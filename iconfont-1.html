@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Awesome · 字体图标</title>
+    <link rel="stylesheet" href="cdn/fa-all.min.css">
+    <style>
+        /* —— Letterpress Shop Palette —— */
+        :root {
+            --wy-ink:        #0F1C2E;   /* 墨蓝 */
+            --wy-brass:      #B48A5B;   /* 铜锈金属 accent */
+            --wy-paper:      #F2ECE2;   /* 象牙纸 */
+            --wy-rule:       #C4B7A8;   /* 暖灰细线 */
+            --wy-type-grey:  #6B5E50;   /* 次级灰 */
+            --wy-rule-thin:  #E0D6C8;   /* 极浅分线 */
+        }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            background: var(--wy-paper);
+            color: var(--wy-ink);
+            font-family: "SF Mono", Consolas, Menlo, "Courier New", monospace;
+            font-size: 14px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: inherit; }
+
+        .wy_page-shell {
+            width: min(1180px, calc(100% - 56px));
+            margin: 0 auto;
+        }
+
+        /* —— Topbar —— */
+        .wy_topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 40px 0 24px;
+            border-bottom: 3px solid var(--wy-ink);
+        }
+
+        .wy_signature {
+            font-family: "SF Mono", Consolas, monospace;
+            font-size: 13px;
+            letter-spacing: 0;
+            color: var(--wy-type-grey);
+        }
+
+        .wy_signature b {
+            color: var(--wy-ink);
+            font-weight: 700;
+        }
+
+        .wy_home-link {
+            font-family: inherit;
+            font-size: 13px;
+            text-decoration: none;
+            color: var(--wy-ink);
+            border-bottom: 1px solid var(--wy-brass);
+            padding-bottom: 1px;
+            transition: color .1s ease;
+        }
+        .wy_home-link:hover { color: var(--wy-brass); }
+
+        /* —— Hero：铸造时刻 —— */
+        .wy_hero {
+            padding: 72px 0 56px;
+            position: relative;
+        }
+
+        .wy_hero-mark {
+            color: var(--wy-brass);
+            font-size: 140px;
+            line-height: 1;
+            display: block;
+            text-align: center;
+        }
+
+        .wy_hero-title {
+            margin: 28px 0 12px;
+            font-family: Georgia, "Songti SC", serif;
+            font-weight: 400;
+            font-size: clamp(36px, 6vw, 64px);
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+            text-align: center;
+        }
+
+        .wy_hero-sub {
+            margin: 0;
+            text-align: center;
+            color: var(--wy-type-grey);
+            font-family: "SF Mono", Consolas, monospace;
+            font-size: 13px;
+            letter-spacing: 0.02em;
+        }
+
+        .wy_hero-meta {
+            margin-top: 20px;
+            text-align: center;
+            font-family: "SF Mono", Consolas, monospace;
+            font-size: 12px;
+            color: var(--wy-rule);
+        }
+
+        .wy_hero-meta span {
+            margin: 0 10px;
+        }
+
+        /* —— Section：终端风格 —— */
+        .wy_section {
+            margin-top: 72px;
+        }
+
+        .wy_section-head {
+            margin-bottom: 28px;
+        }
+
+        .wy_section-anchor {
+            font-family: "SF Mono", Consolas, monospace;
+            font-size: 11px;
+            color: var(--wy-brass);
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .wy_section-title {
+            font-family: Georgia, "Songti SC", serif;
+            font-size: clamp(24px, 3.2vw, 34px);
+            font-weight: 400;
+            margin: 0;
+            line-height: 1.25;
+        }
+
+        .wy_section-rule {
+            margin-top: 18px;
+            border-bottom: 1px solid var(--wy-rule);
+        }
+
+        /* —— Icon Grid：无边界画廊 —— */
+        .wy_icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+            gap: 0;
+            border-top: 1px solid var(--wy-rule);
+            border-left: 1px solid var(--wy-rule);
+            margin-top: 12px;
+        }
+
+        .wy_icon-cell {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 28px 12px 16px;
+            border-right: 1px solid var(--wy-rule);
+            border-bottom: 1px solid var(--wy-rule);
+            cursor: default;
+            position: relative;
+            transition: background-color .15s ease;
+        }
+
+        .wy_icon-cell:hover { background: #E8DFCF; }
+
+        .wy_icon-cell i {
+            font-size: 42px;
+            color: var(--wy-ink);
+            transition: color .15s ease;
+            line-height: 1;
+        }
+
+        .wy_icon-cell:hover i { color: var(--wy-brass); }
+
+        .wy_icon-name {
+            margin-top: 12px;
+            font-family: "SF Mono", Consolas, monospace;
+            font-size: 11px;
+            color: var(--wy-type-grey);
+            letter-spacing: 0;
+            text-align: center;
+            line-height: 1.4;
+            max-width: 120px;
+            word-break: break-all;
+            transition: color .15s ease;
+        }
+
+        .wy_icon-cell:hover .wy_icon-name { color: var(--wy-ink); }
+
+        /* —— Footer —— */
+        .wy_footer {
+            margin-top: 96px;
+            padding: 24px 0 48px;
+            border-top: 1px solid var(--wy-rule);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            font-family: "SF Mono", Consolas, monospace;
+            font-size: 12px;
+            color: var(--wy-type-grey);
+        }
+
+        .wy_footer a {
+            text-decoration: none;
+            color: var(--wy-ink);
+            border-bottom: 1px solid var(--wy-brass);
+        }
+        .wy_footer a:hover { color: var(--wy-brass); }
+
+        @media (max-width: 720px) {
+            .wy_icon-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+            .wy_icon-cell { padding: 20px 6px 12px; }
+            .wy_icon-cell i { font-size: 32px; }
+            .wy_hero-mark { font-size: 110px; }
+            .wy_topbar { padding-top: 24px; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wy_page-shell">
+        <header class="wy_topbar">
+            <span class="wy_signature">// fontawesom<strong>e</strong> · 6.5.2</span>
+            <a href="index.html" class="wy_home-link">返回首页</a>
+        </header>
+
+        <section class="wy_hero">
+            <span class="wy_hero-mark"><i class="fa-solid fa-code"></i></span>
+            <h1 class="wy_hero-title">Glyphs Cast<br>from Metal</h1>
+            <p class="wy_hero-sub">font-family: 'Font Awesome 6 Solid'; font-weight: 900;</p>
+            <p class="wy_hero-meta">
+                <span>2,335 glyphs</span>·<span>3 weights</span>·<span>0 svg overhead</span>
+            </p>
+        </section>
+
+        <!-- Solid 实心 -->
+        <section class="wy_section">
+            <div class="wy_section-head">
+                <span class="wy_section-anchor">section:01 // fa-solid</span>
+                <h2 class="wy_section-title">Solid — 铸造的实心字形</h2>
+                <div class="wy_section-rule"></div>
+            </div>
+            <div class="wy_icon-grid">
+                <div class="wy_icon-cell"><i class="fa-solid fa-house"></i><span class="wy_icon-name">fa-house</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-user"></i><span class="wy_icon-name">fa-user</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-heart"></i><span class="wy_icon-name">fa-heart</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-star"></i><span class="wy_icon-name">fa-star</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-magnifying-glass"></i><span class="wy_icon-name">fa-magnifying-glass</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-bell"></i><span class="wy_icon-name">fa-bell</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-envelope"></i><span class="wy_icon-name">fa-envelope</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-camera"></i><span class="wy_icon-name">fa-camera</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-music"></i><span class="wy_icon-name">fa-music</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-film"></i><span class="wy_icon-name">fa-film</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-globe"></i><span class="wy_icon-name">fa-globe</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-download"></i><span class="wy_icon-name">fa-download</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-upload"></i><span class="wy_icon-name">fa-upload</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-lock"></i><span class="wy_icon-name">fa-lock</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-phone"></i><span class="wy_icon-name">fa-phone</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-location-dot"></i><span class="wy_icon-name">fa-location-dot</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-book"></i><span class="wy_icon-name">fa-book</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-code"></i><span class="wy_icon-name">fa-code</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-terminal"></i><span class="wy_icon-name">fa-terminal</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-bug"></i><span class="wy_icon-name">fa-bug</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-rocket"></i><span class="wy_icon-name">fa-rocket</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-leaf"></i><span class="wy_icon-name">fa-leaf</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-sun"></i><span class="wy_icon-name">fa-sun</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-moon"></i><span class="wy_icon-name">fa-moon</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-cloud"></i><span class="wy_icon-name">fa-cloud</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-fire"></i><span class="wy_icon-name">fa-fire</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-bolt"></i><span class="wy_icon-name">fa-bolt</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-car"></i><span class="wy_icon-name">fa-car</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-plane"></i><span class="wy_icon-name">fa-plane</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-wifi"></i><span class="wy_icon-name">fa-wifi</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-battery-full"></i><span class="wy_icon-name">fa-battery-full</span></div>
+                <div class="wy_icon-cell"><i class="fa-solid fa-shield-halved"></i><span class="wy_icon-name">fa-shield-halved</span></div>
+            </div>
+        </section>
+
+        <!-- Regular 常规 -->
+        <section class="wy_section">
+            <div class="wy_section-head">
+                <span class="wy_section-anchor">section:02 // fa-regular</span>
+                <h2 class="wy_section-title">Regular — 空心的轻量字形</h2>
+                <div class="wy_section-rule"></div>
+            </div>
+            <div class="wy_icon-grid">
+                <div class="wy_icon-cell"><i class="fa-regular fa-heart"></i><span class="wy_icon-name">fa-regular fa-heart</span></div>
+                <div class="wy_icon-cell"><i class="fa-regular fa-star"></i><span class="wy_icon-name">fa-regular fa-star</span></div>
+                <div class="wy_icon-cell"><i class="fa-regular fa-user"></i><span class="wy_icon-name">fa-regular fa-user</span></div>
+                <div class="wy_icon-cell"><i class="fa-regular fa-envelope"></i><span class="wy_icon-name">fa-regular fa-envelope</span></div>
+                <div class="wy_icon-cell"><i class="fa-regular fa-comment"></i><span class="wy_icon-name">fa-regular fa-comment</span></div>
+                <div class="wy_icon-cell"><i class="fa-regular fa-copy"></i><span class="wy_icon-name">fa-regular fa-copy</span></div>
+                <div class="wy_icon-cell"><i class="fa-regular fa-file"></i><span class="wy_icon-name">fa-regular fa-file</span></div>
+                <div class="wy_icon-cell"><i class="fa-regular fa-calendar"></i><span class="wy_icon-name">fa-regular fa-calendar</span></div>
+                <div class="wy_icon-cell"><i class="fa-regular fa-clock"></i><span class="wy_icon-name">fa-regular fa-clock</span></div>
+                <div class="wy_icon-cell"><i class="fa-regular fa-hand-pointer"></i><span class="wy_icon-name">fa-regular fa-hand-pointer</span></div>
+                <div class="wy_icon-cell"><i class="fa-regular fa-image"></i><span class="wy_icon-name">fa-regular fa-image</span></div>
+                <div class="wy_icon-cell"><i class="fa-regular fa-trash-can"></i><span class="wy_icon-name">fa-regular fa-trash-can</span></div>
+            </div>
+        </section>
+
+        <!-- Brands 品牌 -->
+        <section class="wy_section">
+            <div class="wy_section-head">
+                <span class="wy_section-anchor">section:03 // fa-brands</span>
+                <h2 class="wy_section-title">Brands — 烙印的识别字形</h2>
+                <div class="wy_section-rule"></div>
+            </div>
+            <div class="wy_icon-grid">
+                <div class="wy_icon-cell"><i class="fa-brands fa-github"></i><span class="wy_icon-name">fa-github</span></div>
+                <div class="wy_icon-cell"><i class="fa-brands fa-weixin"></i><span class="wy_icon-name">fa-weixin</span></div>
+                <div class="wy_icon-cell"><i class="fa-brands fa-weibo"></i><span class="wy_icon-name">fa-weibo</span></div>
+                <div class="wy_icon-cell"><i class="fa-brands fa-qq"></i><span class="wy_icon-name">fa-qq</span></div>
+                <div class="wy_icon-cell"><i class="fa-brands fa-html5"></i><span class="wy_icon-name">fa-html5</span></div>
+                <div class="wy_icon-cell"><i class="fa-brands fa-css3-alt"></i><span class="wy_icon-name">fa-css3-alt</span></div>
+                <div class="wy_icon-cell"><i class="fa-brands fa-js"></i><span class="wy_icon-name">fa-js</span></div>
+                <div class="wy_icon-cell"><i class="fa-brands fa-react"></i><span class="wy_icon-name">fa-react</span></div>
+                <div class="wy_icon-cell"><i class="fa-brands fa-python"></i><span class="wy_icon-name">fa-python</span></div>
+                <div class="wy_icon-cell"><i class="fa-brands fa-java"></i><span class="wy_icon-name">fa-java</span></div>
+                <div class="wy_icon-cell"><i class="fa-brands fa-linux"></i><span class="wy_icon-name">fa-linux</span></div>
+                <div class="wy_icon-cell"><i class="fa-brands fa-windows"></i><span class="wy_icon-name">fa-windows</span></div>
+                <div class="wy_icon-cell"><i class="fa-brands fa-apple"></i><span class="wy_icon-name">fa-apple</span></div>
+                <div class="wy_icon-cell"><i class="fa-brands fa-android"></i><span class="wy_icon-name">fa-android</span></div>
+                <div class="wy_icon-cell"><i class="fa-brands fa-docker"></i><span class="wy_icon-name">fa-docker</span></div>
+                <div class="wy_icon-cell"><i class="fa-brands fa-npm"></i><span class="wy_icon-name">fa-npm</span></div>
+                <div class="wy_icon-cell"><i class="fa-brands fa-youtube"></i><span class="wy_icon-name">fa-youtube</span></div>
+                <div class="wy_icon-cell"><i class="fa-brands fa-x-twitter"></i><span class="wy_icon-name">fa-x-twitter</span></div>
+                <div class="wy_icon-cell"><i class="fa-brands fa-linkedin"></i><span class="wy_icon-name">fa-linkedin</span></div>
+                <div class="wy_icon-cell"><i class="fa-brands fa-facebook"></i><span class="wy_icon-name">fa-facebook</span></div>
+            </div>
+        </section>
+
+        <footer class="wy_footer">
+            <span>Font Awesome Free · 本地 cdn/webfonts</span>
+            <a href="index.html">返回首页</a>
+        </footer>
+    </div>
+</body>
+</html>

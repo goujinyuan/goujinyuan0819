@@ -1,0 +1,19 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Screenshots (temp review artifacts)
+.screenshots/
+
+# Node (if any tooling later)
+node_modules/
+npm-debug.log*
+
+# Env / secrets
+.env
+.env.local

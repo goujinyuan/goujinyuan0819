@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页整体布局课后作业｜苟津源</title>
+    <style>
+        :root {
+            --ink: #1d2833;
+            --muted: #667481;
+            --paper: #f6f4ee;
+            --card: #fffdf8;
+            --line: #d9ddd8;
+            --accent: #e26d4f;
+            --accent-dark: #a9422f;
+            --mint: #dcefe8;
+            --yellow: #f5d77a;
+            --code-bg: #1d2833;
+            --code-text: #e8e6df;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--paper);
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            line-height: 1.8;
+        }
+
+        .page-shell {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 28px 0 60px;
+        }
+
+        .back-link {
+            color: var(--accent);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(40px, 7vw, 72px) clamp(28px, 7vw, 80px);
+            background: var(--mint);
+            border: 1px solid var(--line);
+            margin-top: 24px;
+        }
+
+        .hero::after {
+            position: absolute;
+            right: 6%;
+            bottom: -50px;
+            width: 170px;
+            height: 170px;
+            content: "";
+            border: 24px solid var(--yellow);
+            border-radius: 50%;
+            opacity: .8;
+        }
+
+        .eyebrow {
+            position: relative;
+            z-index: 1;
+            margin: 0 0 14px;
+            color: var(--accent-dark);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: .16em;
+        }
+
+        h1 {
+            position: relative;
+            z-index: 1;
+            margin: 0 0 16px;
+            font-family: Georgia, "Songti SC", serif;
+            font-size: clamp(32px, 5vw, 56px);
+            line-height: 1.15;
+        }
+
+        .hero-copy {
+            position: relative;
+            z-index: 1;
+            max-width: 640px;
+            margin: 0;
+            color: #41535a;
+            font-size: 17px;
+        }
+
+        .meta-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 28px 0 40px;
+        }
+
+        .meta-chip {
+            padding: 8px 18px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .section {
+            margin-bottom: 44px;
+            padding: 32px;
+            background: var(--card);
+            border: 1px solid var(--line);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--line);
+        }
+
+        .section-number {
+            color: var(--accent);
+            font-family: Georgia, serif;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        h2 {
+            margin: 0;
+            font-family: Georgia, "Songti SC", serif;
+            font-size: clamp(22px, 3vw, 30px);
+        }
+
+        .score {
+            margin-left: auto;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        h3 {
+            margin: 28px 0 12px;
+            font-size: 18px;
+            color: var(--accent-dark);
+        }
+
+        h4 {
+            margin: 20px 0 8px;
+            font-size: 16px;
+        }
+
+        p {
+            margin: 8px 0;
+        }
+
+        /* 代码块 */
+        pre {
+            margin: 12px 0;
+            padding: 20px;
+            background: var(--code-bg);
+            color: var(--code-text);
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        code {
+            font-family: "Consolas", "Courier New", monospace;
+        }
+
+        .inline-code {
+            padding: 2px 8px;
+            background: #eef0ea;
+            border-radius: 4px;
+            font-size: 14px;
+            color: var(--accent-dark);
+        }
+
+        /* 找错题的错误标注 */
+        .bug-line {
+            background: rgba(226, 109, 79, .15);
+            border-left: 3px solid var(--accent);
+            padding-left: 8px;
+            margin-left: -8px;
+        }
+
+        .bug-tag {
+            display: inline-block;
+            margin-left: 8px;
+            padding: 1px 8px;
+            background: var(--accent);
+            color: #fff;
+            font-size: 12px;
+            border-radius: 3px;
+        }
+
+        .fixed-line {
+            background: rgba(120, 190, 160, .15);
+            border-left: 3px solid #6fae8e;
+            padding-left: 8px;
+            margin-left: -8px;
+        }
+
+        .fixed-tag {
+            display: inline-block;
+            margin-left: 8px;
+            padding: 1px 8px;
+            background: #6fae8e;
+            color: #fff;
+            font-size: 12px;
+            border-radius: 3px;
+        }
+
+        /* 表格 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 15px;
+        }
+
+        th,
+        td {
+            padding: 12px 16px;
+            text-align: left;
+            border: 1px solid var(--line);
+        }
+
+        th {
+            background: var(--mint);
+            font-weight: 700;
+        }
+
+        td.answer {
+            color: var(--accent-dark);
+            font-weight: 600;
+        }
+
+        /* 填空题答案 */
+        .answer-fill {
+            color: var(--accent-dark);
+            font-weight: 700;
+            border-bottom: 2px solid var(--accent);
+            padding: 0 4px;
+        }
+
+        /* 盒子模型示意图 */
+        .box-demo {
+            position: relative;
+            width: 320px;
+            height: 240px;
+            margin: 20px auto;
+            border: 2px dashed var(--muted);
+            background: rgba(220, 239, 232, .4);
+        }
+
+        .box-demo .parent {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 260px;
+            height: 180px;
+            border: 2px solid #4a90d9;
+            background: rgba(74, 144, 217, .12);
+        }
+
+        .box-demo .parent-label {
+            position: absolute;
+            top: -22px;
+            left: 0;
+            color: #4a90d9;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .box-demo .child {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 100px;
+            height: 60px;
+            border: 2px solid var(--accent);
+            background: rgba(226, 109, 79, .18);
+        }
+
+        .box-demo .child-label {
+            position: absolute;
+            bottom: -22px;
+            right: 0;
+            color: var(--accent-dark);
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .demo-caption {
+            text-align: center;
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        /* 扩展挑战：回到顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            left: 24px;
+            bottom: 24px;
+            z-index: 999;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: #fff;
+            text-align: center;
+            line-height: 48px;
+            text-decoration: none;
+            font-weight: 700;
+            opacity: .5;
+            transition: opacity .3s ease, transform .3s ease;
+        }
+
+        .back-to-top:hover {
+            opacity: 1;
+            transform: scale(1.15);
+        }
+
+        .footer-note {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 13px;
+            text-align: center;
+        }
+
+        @media (max-width: 760px) {
+            .page-shell {
+                width: min(100% - 28px, 600px);
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            th,
+            td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-shell">
+        <a href="./index.html" class="back-link">← 返回课堂目录</a>
+
+        <header class="hero">
+            <p class="eyebrow">HOMEWORK / 网页整体布局</p>
+            <h1>网页整体布局<br>课后作业</h1>
+            <p class="hero-copy">H5 语义化标签、Flex 布局、子绝父相定位、overflow 裁切与 transform 缩放动画、transition 过渡效果。</p>
+        </header>
+
+        <div class="meta-bar">
+            <span class="meta-chip">姓名：苟津源</span>
+            <span class="meta-chip">课程：高级网页设计</span>
+            <span class="meta-chip">提交：下次上课前</span>
+        </div>
+
+        <!-- ========== 第一部分：看代码找错 ========== -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <h2>看代码找错</h2>
+                <span class="score">20 分</span>
+            </div>
+            <p>下面代码存在 3 处 bug，分别对应：①图片放大跑出卡片盖住旁边卡片；②文字展开移入有动画、移出无过渡；③卡片布局排版错乱。</p>
+
+            <h3>原始代码（标注错误）</h3>
+            <pre><code>.box li{
+    width: 300px;
+}
+.box img{
+    width: 100%;
+}
+.box li:hover img{
+    transform: scale(1.2);
+<span class="bug-line">    transition: all .6s;</span><span class="bug-tag">Bug②</span>
+}
+.txt{
+<span class="bug-line">    position: absolute;</span><span class="bug-tag">Bug③</span>
+    bottom: 0;
+    height: 40px;
+    background: rgba(0,0,0,.6);
+}
+.box{
+<span class="bug-line">    display: flex;</span><span class="bug-tag">Bug①</span>
+}</code></pre>
+
+            <h3>三处 Bug 分析与修改</h3>
+
+            <h4>Bug①：图片放大跑出卡片，盖住旁边卡片</h4>
+            <p><strong>原因：</strong><code class="inline-code">li</code> 没有设置 <code class="inline-code">overflow: hidden</code>，图片 <code class="inline-code">scale(1.2)</code> 放大后溢出 li 容器，覆盖相邻卡片。</p>
+            <p><strong>修改：</strong>给 <code class="inline-code">.box li</code> 添加 <code class="inline-code">overflow: hidden;</code>，并添加 <code class="inline-code">position: relative;</code>（子绝父相）。</p>
+
+            <h4>Bug②：文字展开只有移入有动画，移出无过渡</h4>
+            <p><strong>原因：</strong><code class="inline-code">transition</code> 写在了 <code class="inline-code">:hover</code> 选择器里，鼠标移出时 transition 失效，元素瞬间回到原状。</p>
+            <p><strong>修改：</strong>把 <code class="inline-code">transition</code> 移到默认选择器 <code class="inline-code">.box li img</code> 上，使移入移出都有过渡。</p>
+
+            <h4>Bug③：卡片布局排版错乱</h4>
+            <p><strong>原因：</strong><code class="inline-code">.txt</code> 使用了 <code class="inline-code">position: absolute</code>，但其父元素 <code class="inline-code">li</code> 没有设置 <code class="inline-code">position: relative</code>，导致文字条相对于更外层祖先定位，排版错乱。</p>
+            <p><strong>修改：</strong>给 <code class="inline-code">.box li</code> 添加 <code class="inline-code">position: relative;</code>（子绝父相）。</p>
+
+            <h3>修改后的完整代码</h3>
+            <pre><code>.box li{
+    width: 300px;
+<span class="fixed-line">    overflow: hidden;</span><span class="fixed-tag">修复①</span>
+<span class="fixed-line">    position: relative;</span><span class="fixed-tag">修复③</span>
+}
+.box img{
+    width: 100%;
+<span class="fixed-line">    transition: all .6s;</span><span class="fixed-tag">修复②</span>
+}
+.box li:hover img{
+    transform: scale(1.2);
+}
+.txt{
+    position: absolute;
+    bottom: 0;
+    height: 40px;
+    background: rgba(0,0,0,.6);
+}
+.box{
+    display: flex;
+}</code></pre>
+        </section>
+
+        <!-- ========== 第二部分：补全代码 ========== -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <h2>补全代码</h2>
+                <span class="score">40 分</span>
+            </div>
+
+            <h3>2.1 语义标签填空</h3>
+            <table>
+                <tr>
+                    <th>区域</th>
+                    <th>标签</th>
+                </tr>
+                <tr>
+                    <td>页面顶部头部区域</td>
+                    <td class="answer"><code class="inline-code">&lt;header&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>导航条</td>
+                    <td class="answer"><code class="inline-code">&lt;nav&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>页面唯一主要内容区</td>
+                    <td class="answer"><code class="inline-code">&lt;main&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>侧边栏附属内容</td>
+                    <td class="answer"><code class="inline-code">&lt;aside&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>页面底部版权页脚</td>
+                    <td class="answer"><code class="inline-code">&lt;footer&gt;</code></td>
+                </tr>
+            </table>
+
+            <h3>2.2 卡片动画补全</h3>
+            <p>制作 6 张图文卡片，实现上图下文、悬浮图上文字展开效果。</p>
+            <table>
+                <tr>
+                    <th>需要实现效果</th>
+                    <th>答案</th>
+                </tr>
+                <tr>
+                    <td>防止放大图片溢出 li 容器</td>
+                    <td class="answer"><code class="inline-code">overflow: hidden;</code></td>
+                </tr>
+                <tr>
+                    <td>子绝父相，让文字条定位在卡片底部</td>
+                    <td class="answer"><code class="inline-code">position: relative;</code></td>
+                </tr>
+                <tr>
+                    <td>hover 图片从原始大小放大到 scale(1.2)</td>
+                    <td class="answer"><code class="inline-code">.box li img</code> 和 <code class="inline-code">.box li:hover img</code></td>
+                </tr>
+                <tr>
+                    <td>文字高度平滑展开，移入移出都有动画。transition 写在默认还是 hover？为什么？</td>
+                    <td class="answer">写在<strong>默认选择器</strong>上。因为 transition 写在 hover 上时，只有鼠标移入时才生效，移出时没有过渡效果（瞬间回到原状）；写在默认选择器上，移入和移出都会触发过渡动画。</td>
+                </tr>
+                <tr>
+                    <td>奇数卡片悬浮，文字铺满整张卡片</td>
+                    <td class="answer"><code class="inline-code">:nth-child(odd)</code>（或 <code class="inline-code">:nth-child(2n+1)</code>）</td>
+                </tr>
+            </table>
+
+            <h3>2.3 Flex 两栏布局填空</h3>
+            <p>版心 1200px；主内容 792px，侧边栏 400px；两栏间隔 8px。</p>
+            <table>
+                <tr>
+                    <th>需求</th>
+                    <th>答案</th>
+                </tr>
+                <tr>
+                    <td>父容器开启 flex</td>
+                    <td class="answer"><code class="inline-code">display: flex;</code></td>
+                </tr>
+                <tr>
+                    <td>设置两栏间隙 8px（禁止 margin）</td>
+                    <td class="answer"><code class="inline-code">gap: 8px;</code></td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- ========== 第三部分：手写原理简答 ========== -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <h2>手写原理简答</h2>
+                <span class="score">25 分</span>
+            </div>
+
+            <h3>1. 父元素 position: relative，子元素 position: absolute 的盒子位置关系</h3>
+            <p>下图用 CSS 绘制示意：父元素（蓝色）设为 relative，子元素（橙色）设为 absolute，子元素相对于父元素进行定位（bottom: 10px; right: 10px）。</p>
+            <div class="box-demo">
+                <div class="parent">
+                    <span class="parent-label">父元素 position: relative</span>
+                    <div class="child">
+                        <span class="child-label">子元素 position: absolute</span>
+                    </div>
+                </div>
+            </div>
+            <p class="demo-caption">子元素 absolute 脱离文档流，以最近的已定位祖先（relative 的父元素）为参照定位</p>
+
+            <h3>2. overflow: hidden 本节课两个作用</h3>
+            <p><strong>作用 1：</strong><span class="answer-fill">裁切溢出内容</span> —— 给 li 设置 overflow: hidden，防止图片 scale 放大后溢出卡片容器，盖住相邻卡片。</p>
+            <p><strong>作用 2：</strong><span class="answer-fill">清除浮动</span> —— 当子元素浮动导致父元素高度塌陷时，给父元素设置 overflow: hidden 可以触发 BFC，从而清除浮动影响（本节课未用浮动，但这是 overflow:hidden 的经典作用）。</p>
+
+            <h3>3. transform: scale(1.2) 会不会把盒子实际占位变大，挤压旁边卡片？</h3>
+            <p><strong>不会。</strong>transform 属于<strong>合成层属性</strong>，只改变元素的视觉渲染效果，不改变元素在文档流中的实际占位。图片 scale(1.2) 后，视觉上变大了，但它在布局中的位置和尺寸不变，因此不会挤压旁边的卡片。放大的部分会溢出容器，需要配合 <code class="inline-code">overflow: hidden</code> 来裁切。</p>
+
+            <h3>4. transition 写在 hover 上和写在普通选择器上，鼠标移出动画有什么区别？</h3>
+            <p><strong>写在 hover 上：</strong>鼠标移入时有过渡动画，移出时没有过渡（瞬间跳回原状）。因为移出后元素不再匹配 hover 选择器，transition 属性失效。</p>
+            <p><strong>写在普通选择器上：</strong>鼠标移入和移出都有过渡动画。因为 transition 始终生效，状态变化（无论进入还是离开 hover）都会触发过渡。</p>
+            <p>所以要实现"移入移出都有动画"，transition 必须写在<strong>默认（普通）选择器</strong>上。</p>
+
+            <h3>5. 写代码遇到的 1 个 bug</h3>
+            <p><strong>现象：</strong>做卡片悬浮放大效果时，图片放大后会覆盖到旁边的卡片，看起来很混乱。</p>
+            <p><strong>排查过程：</strong>先检查 transform: scale 是否写对，确认没问题后，发现是 li 容器没有限制溢出。图片放大后超出了 li 的范围。</p>
+            <p><strong>修复方法：</strong>给 li 添加 <code class="inline-code">overflow: hidden;</code>，放大的图片部分被裁切在卡片内部，不再覆盖相邻卡片。同时给 li 加 <code class="inline-code">position: relative</code> 让内部文字条的 absolute 定位参照 li。</p>
+        </section>
+
+        <!-- ========== 第四部分：扩展挑战 ========== -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">04</span>
+                <h2>扩展挑战（选做）</h2>
+                <span class="score">15 分加分</span>
+            </div>
+            <p>实现左下角回到顶部按钮，纯 CSS 实现（不使用 JS）。效果见页面左下角的橙色圆形按钮 ↑</p>
+
+            <h3>实现代码</h3>
+            <pre><code>.back-to-top{
+    /* 固定在视口左下角 */
+    position: fixed;
+    left: 24px;
+    bottom: 24px;
+    /* z-index 保证浮于内容之上 */
+    z-index: 999;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #e26d4f;
+    color: #fff;
+    text-align: center;
+    line-height: 48px;
+    text-decoration: none;
+    font-weight: 700;
+    /* 初始半透明 */
+    opacity: .5;
+    /* 移入移出都有过渡 */
+    transition: opacity .3s ease, transform .3s ease;
+}
+.back-to-top:hover{
+    /* hover 完全不透明 */
+    opacity: 1;
+    /* 轻微放大 */
+    transform: scale(1.15);
+}</code></pre>
+            <p>按钮使用 <code class="inline-code">&lt;a href="#top"&gt;</code> 锚点跳转回页面顶部，无需 JS。</p>
+        </section>
+
+        <div class="footer-note">
+            高级网页设计 · 网页整体布局课后作业 · 苟津源
+        </div>
+    </div>
+
+    <!-- 扩展挑战：回到顶部按钮（纯CSS实现） -->
+    <a href="#" class="back-to-top" aria-label="回到顶部">↑</a>
+</body>
+
+</html>

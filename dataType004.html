@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据类型与数7游戏</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 8px;
+            font-size: 32px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .card h2 {
+            color: #5b3a8e;
+            border-left: 5px solid #764ba2;
+            padding-left: 12px;
+            margin-bottom: 16px;
+            font-size: 22px;
+        }
+
+        /* 数据类型演示区 */
+        .console-out {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            font-family: Consolas, Monaco, monospace;
+            font-size: 14px;
+            padding: 16px;
+            border-radius: 8px;
+            line-height: 1.7;
+            overflow-x: auto;
+        }
+        .console-out .line { white-space: pre; }
+        .console-out .cmt { color: #6a9955; }
+        .console-out .num { color: #b5cea8; }
+        .console-out .str { color: #ce9178; }
+        .console-out .bool { color: #569cd6; }
+
+        /* 数7游戏控制条 */
+        .controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        .controls label { font-weight: bold; color: #5b3a8e; }
+        .controls input[type="number"] {
+            width: 80px;
+            padding: 8px 10px;
+            border: 2px solid #d0c4e8;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .controls input:focus { outline: none; border-color: #764ba2; }
+        .btn {
+            padding: 8px 18px;
+            border: none;
+            border-radius: 6px;
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(118,75,162,0.4); }
+        .btn:active { transform: translateY(0); }
+        .btn.secondary { background: linear-gradient(135deg, #f093fb, #f5576c); }
+
+        .legend {
+            display: flex;
+            gap: 18px;
+            font-size: 13px;
+            margin-bottom: 14px;
+            color: #555;
+        }
+        .legend span { display: inline-flex; align-items: center; gap: 6px; }
+        .legend i {
+            width: 16px; height: 16px; border-radius: 4px;
+            display: inline-block;
+        }
+        .legend .lc-num { background: #eef0f6; border: 1px solid #d0c4e8; }
+        .legend .lc-skip { background: linear-gradient(135deg, #f5576c, #f093fb); }
+
+        /* 数字网格 */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 8px;
+        }
+        .item {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: #eef0f6;
+            font-weight: bold;
+            color: #5b3a8e;
+            font-size: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: default;
+        }
+        .item:hover { transform: scale(1.12); box-shadow: 0 4px 10px rgba(0,0,0,0.15); z-index: 1; }
+        .item.skip {
+            background: linear-gradient(135deg, #f5576c, #f093fb);
+            color: #fff;
+            font-size: 18px;
+            box-shadow: 0 2px 8px rgba(245,87,108,0.4);
+        }
+        .item.highlight {
+            outline: 3px solid #ffd700;
+            outline-offset: 2px;
+            transform: scale(1.15);
+        }
+
+        @media (max-width: 600px) {
+            .container { grid-template-columns: repeat(6, 1fr); }
+            h1 { font-size: 24px; }
+            .item { font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <h1>数7游戏 · 逢7必过</h1>
+    <p class="subtitle">数据类型演示 + 经典数7玩法（7的倍数或包含数字7 都喊"过"）</p>
+
+    <!-- 数据类型演示 -->
+    <div class="card">
+        <h2>JS 数据类型与运算符</h2>
+        <div id="consoleOut" class="console-out"></div>
+    </div>
+
+    <!-- 数7游戏 -->
+    <div class="card">
+        <h2>数7游戏</h2>
+        <div class="controls">
+            <label>总数：</label>
+            <input type="number" id="maxNum" value="100" min="1" max="500">
+            <button class="btn" id="startBtn">开始</button>
+            <button class="btn secondary" id="resetBtn">重置</button>
+            <button class="btn" id="autoBtn">自动数数</button>
+        </div>
+        <div class="legend">
+            <span><i class="lc-num"></i> 报数</span>
+            <span><i class="lc-skip"></i> 过（7的倍数 或 含7）</span>
+        </div>
+        <div id="container" class="container"></div>
+    </div>
+
+<script>
+    // ============ 数据类型演示 ============
+    function showDataTypes() {
+        var a = 10, b = 4;
+        var str = 'hello world', num = 10, bool = true;
+        var ud;                               // undefined
+        var obj = {name:'张三', age:28};       // object
+        var arr = [1,2,3,4,5];                // array
+
+        var logs = [];
+        // 算术与三元
+        logs.push(['a + b = ' + (a + b), '算术加']);
+        logs.push(['a - b > 0 ? a : b => ' + (a - b > 0 ? a : b), '三元运算']);
+        // 逻辑
+        logs.push(['true&&false, true||false, !true => ' +
+            [true&&false, true||false, !true].join(', '), '逻辑运算']);
+        // 浮点精度
+        logs.push(['0.1 + 0.2 == 0.3 => ' + (0.1 + 0.2 == 0.3) +
+            ' (实际: ' + (0.1 + 0.2) + ')', '浮点精度问题']);
+        // 隐式转换
+        logs.push(["'1' + 1 = " + ('1' + 1) + ", 1 - '1' = " + (1 - '1') +
+            ", '11' + 1 - 1 = " + ('11' + 1 - 1), '字符串与数字隐式转换']);
+        logs.push(["'goujinyuan' - 1 = " + ('goujinyuan' - 1), '非数字字符串参与减法 => NaN']);
+        logs.push(['NaN == NaN => ' + (NaN == NaN), 'NaN 与任何值都不等']);
+        logs.push(["parseInt('12.9') = " + parseInt('12.9'), 'parseInt 取整']);
+        // 类型识别
+        logs.push(['typeof str = ' + typeof str, 'string']);
+        logs.push(['typeof num = ' + typeof num, 'number']);
+        logs.push(['typeof bool = ' + typeof bool, 'boolean']);
+        logs.push(['typeof ud = ' + typeof ud, 'undefined']);
+        logs.push(['typeof obj = ' + typeof obj, 'object']);
+        logs.push(['Array.isArray(arr) = ' + Array.isArray(arr), 'array 是 object']);
+
+        var box = document.getElementById('consoleOut');
+        var html = '';
+        logs.forEach(function(item){
+            html += '<div class="line">' +
+                    '<span class="cmt">// ' + item[1] + '</span><br>' +
+                    '<span class="str">› </span>' + item[0] +
+                    '</div>';
+        });
+        box.innerHTML = html;
+    }
+    showDataTypes();
+
+    // ============ 数7游戏 ============
+    var container = document.getElementById('container');
+    var maxInput = document.getElementById('maxNum');
+    var startBtn = document.getElementById('startBtn');
+    var resetBtn = document.getElementById('resetBtn');
+    var autoBtn = document.getElementById('autoBtn');
+    var autoTimer = null;
+
+    // 判断是否需要"过"：是7的倍数 或 字符串包含'7'
+    function shouldSkip(n) {
+        return n % 7 === 0 || String(n).includes('7');
+    }
+
+    // 渲染网格
+    function render(max) {
+        container.innerHTML = '';
+        for (var i = 1; i <= max; i++) {
+            var div = document.createElement('div');
+            div.className = 'item';
+            div.dataset.num = i;
+            if (shouldSkip(i)) {
+                div.innerText = '过';
+                div.classList.add('skip');
+            } else {
+                div.innerText = i;
+            }
+            container.appendChild(div);
+        }
+    }
+
+    startBtn.addEventListener('click', function(){
+        var max = parseInt(maxInput.value) || 100;
+        if (max < 1) max = 1;
+        if (max > 500) max = 500;
+        maxInput.value = max;
+        stopAuto();
+        render(max);
+    });
+
+    resetBtn.addEventListener('click', function(){
+        stopAuto();
+        maxInput.value = 100;
+        render(100);
+    });
+
+    // 自动数数：依次高亮每个数字，遇到7的倍数或含7则显示"过"
+    autoBtn.addEventListener('click', function(){
+        if (autoTimer) { stopAuto(); return; }
+        var max = parseInt(maxInput.value) || 100;
+        var i = 0;
+        container.querySelectorAll('.item').forEach(function(el){ el.classList.remove('highlight'); });
+        autoBtn.innerText = '停止';
+        autoTimer = setInterval(function(){
+            if (i > 0) {
+                var prev = container.querySelector('.item[data-num="' + (i) + '"]');
+                if (prev) prev.classList.remove('highlight');
+            }
+            if (i >= max) { stopAuto(); return; }
+            i++;
+            var cur = container.querySelector('.item[data-num="' + i + '"]');
+            if (cur) cur.classList.add('highlight');
+        }, 200);
+    });
+
+    function stopAuto() {
+        if (autoTimer) {
+            clearInterval(autoTimer);
+            autoTimer = null;
+            autoBtn.innerText = '自动数数';
+            var hi = container.querySelector('.item.highlight');
+            if (hi) hi.classList.remove('highlight');
+        }
+    }
+
+    // 初始渲染
+    render(100);
+</script>
+</body>
+</html>

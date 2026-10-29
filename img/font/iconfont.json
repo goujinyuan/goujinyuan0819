@@ -1,0 +1,16 @@
+{
+  "id": "5238934",
+  "name": "svg",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "47115707",
+      "name": "232_爱好",
+      "font_class": "a-232_aihao",
+      "unicode": "e9af",
+      "unicode_decimal": 59823
+    }
+  ]
+}

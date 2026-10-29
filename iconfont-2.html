@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucide · SVG 线条图标</title>
+    <style>
+        /* —— Blueprint Palette —— */
+        :root {
+            --wy-ink:        #1A2B3C;   /* 深蓝图蓝 */
+            --wy-ink-2:      #0E1815;   /* 墨绿黑次蓝 */
+            --wy-line:       #2E4A5E;   /* 深墨绿（网格） */
+            --wy-line-2:     #4D6B7D;   /* 浅些的蓝线 */
+            --wy-paper:      #F5F4EF;   /* 米白工程纸 */
+            --wy-paper-2:    #EDEAE2;   /* 次级灰纸 */
+            --wy-stroke:     #2B3F2F;   /* 深绿 stroke 深 */
+            --wy-stroke-2:   #4A7C59;   /* 薄荷 accent */
+            --wy-muted:      #7D7A70;   /* 次级文字 */
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: var(--wy-paper);
+            color: var(--wy-ink);
+            font-family: system-ui, "Segoe UI", "PingFang SC", sans-serif;
+            font-size: 15px;
+            line-height: 1.75;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: inherit; }
+
+        .wy_page-shell {
+            width: min(1140px, calc(100% - 64px));
+            margin: 0 auto;
+        }
+
+        /* —— Topbar —— */
+        .wy_topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 36px 0 48px;
+            font-size: 13px;
+            color: var(--wy-muted);
+        }
+
+        .wy_signature {
+            font-family: "SF Mono", Consolas, Menlo, monospace;
+            font-size: 12px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .wy_home-link {
+            font-size: 13px;
+            text-decoration: none;
+            border-bottom: 1px solid var(--wy-stroke-2);
+            padding-bottom: 1px;
+            color: var(--wy-stroke);
+            transition: color .15s ease, border-color .15s ease;
+        }
+        .wy_home-link:hover { color: var(--wy-stroke-2); border-color: var(--wy-stroke); }
+
+        /* —— Hero：蓝图纸张 —— */
+        .wy_hero {
+            background: var(--wy-paper-2);
+            border: 1px solid var(--wy-line);
+            padding: clamp(48px, 8vw, 96px) clamp(28px, 6vw, 72px);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 72px;
+        }
+
+        /* Blueprint grid — 单一刻画 */
+        .wy_hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--wy-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--wy-line) 1px, transparent 1px);
+            background-size: 32px 32px;
+            opacity: 0.28;
+            pointer-events: none;
+        }
+
+        .wy_hero::after {
+            content: "";
+            position: absolute;
+            inset: 12px;
+            border: 1px solid var(--wy-line-2);
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .wy_hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+        }
+
+        .wy_hero-mark {
+            display: block;
+            margin-bottom: 28px;
+        }
+
+        .wy_hero-mark svg {
+            width: 120px;
+            height: 120px;
+            stroke: var(--wy-stroke-2);
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .wy_hero-title {
+            margin: 0 0 16px;
+            font-family: Georgia, "Songti SC", serif;
+            font-weight: 400;
+            font-size: clamp(44px, 7vw, 84px);
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+        }
+
+        .wy_hero-title em {
+            font-style: italic;
+            color: var(--wy-stroke-2);
+            font-weight: 400;
+        }
+
+        .wy_hero-sub {
+            margin: 0;
+            font-family: system-ui, "PingFang SC", sans-serif;
+            font-size: 16px;
+            color: var(--wy-muted);
+            max-width: 560px;
+        }
+
+        .wy_hero-meta {
+            margin-top: 28px;
+            font-family: "SF Mono", Consolas, Menlo, monospace;
+            font-size: 12px;
+            color: var(--wy-line-2);
+        }
+
+        /* —— Section Header：轻量 —— */
+        .wy_section {
+            margin-bottom: 72px;
+        }
+
+        .wy_section-head {
+            margin-bottom: 32px;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .wy_section-title {
+            margin: 0;
+            font-family: Georgia, "Songti SC", serif;
+            font-weight: 400;
+            font-size: clamp(22px, 2.8vw, 30px);
+            line-height: 1.3;
+        }
+
+        .wy_section-title::after {
+            content: "";
+            display: block;
+            margin-top: 12px;
+            border-bottom: 1px dashed var(--wy-line-2);
+        }
+
+        .wy_section-desc {
+            margin: 0;
+            font-family: "SF Mono", Consolas, Menlo, monospace;
+            font-size: 11px;
+            color: var(--wy-muted);
+            letter-spacing: 0.02em;
+            flex-shrink: 0;
+        }
+
+        /* —— Icon Grid：technical drawing —— */
+        .wy_icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+            gap: 2px;
+        }
+
+        .wy_icon-cell {
+            background: var(--wy-paper);
+            border: 1px solid var(--wy-paper-2);
+            padding: 28px 10px 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background-color .12s ease, border-color .12s ease;
+            position: relative;
+        }
+
+        .wy_icon-cell:hover {
+            background: #FFFFFF;
+            border-color: var(--wy-line-2);
+        }
+
+        .wy_icon-cell svg {
+            width: 38px;
+            height: 38px;
+            stroke: var(--wy-stroke);
+            stroke-width: 1.5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: stroke .15s ease;
+        }
+
+        .wy_icon-cell:hover svg { stroke: var(--wy-stroke-2); }
+
+        .wy_icon-name {
+            margin-top: 14px;
+            font-family: "SF Mono", Consolas, Menlo, monospace;
+            font-size: 10.5px;
+            color: var(--wy-muted);
+            letter-spacing: 0;
+            text-align: center;
+            line-height: 1.3;
+            max-width: 110px;
+            word-break: break-all;
+            transition: color .12s ease;
+        }
+
+        .wy_icon-cell:hover .wy_icon-name { color: var(--wy-ink); }
+
+        /* —— Footer —— */
+        .wy_footer {
+            padding: 32px 0 48px;
+            border-top: 1px solid var(--wy-paper-2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            font-size: 12px;
+            color: var(--wy-muted);
+        }
+
+        .wy_footer a {
+            text-decoration: none;
+            color: var(--wy-stroke);
+            border-bottom: 1px solid var(--wy-stroke-2);
+            transition: color .15s ease;
+        }
+        .wy_footer a:hover { color: var(--wy-stroke-2); }
+
+        @media (max-width: 720px) {
+            .wy_section-head { flex-direction: column; align-items: flex-start; gap: 6px; }
+            .wy_hero-mark svg { width: 72px; height: 72px; }
+            .wy_icon-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 1px; }
+            .wy_icon-cell { padding: 18px 6px 12px; }
+            .wy_icon-cell svg { width: 28px; height: 28px; }
+            .wy_topbar { padding: 20px 0 32px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .wy_icon-cell, .wy_icon-cell svg, .wy_icon-name { transition: none !important; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wy_page-shell">
+        <header class="wy_topbar">
+            <span class="wy_signature">lucide · v1.61</span>
+            <a href="index.html" class="wy_home-link">返回首页</a>
+        </header>
+
+        <section class="wy_hero">
+            <div class="wy_hero-inner">
+                <span class="wy_hero-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg></span>
+                <h1 class="wy_hero-title">A Library of <em>Lines</em>.</h1>
+                <p class="wy_hero-sub">2,170 stroke-only icons, drawn in one consistent hand — rendered as inline SVG, weigh nothing, color with a single <code style="font-family:SF Mono,Consolas,monospace;color:var(--wy-stroke-2)">stroke</code> property.</p>
+                <p class="wy_hero-meta">v1.61.0 · UMD · 24 × 24 viewBox · 1.5 stroke-width</p>
+            </div>
+        </section>
+
+        <!-- 基础常用 -->
+        <section class="wy_section">
+            <div class="wy_section-head">
+                <h2 class="wy_section-title">基础常用图标</h2>
+                <p class="wy_section-desc">// core icons</p>
+            </div>
+            <div class="wy_icon-grid">
+                <div class="wy_icon-cell"><i data-lucide="Home"></i><span class="wy_icon-name">Home</span></div>
+                <div class="wy_icon-cell"><i data-lucide="User"></i><span class="wy_icon-name">User</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Heart"></i><span class="wy_icon-name">Heart</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Star"></i><span class="wy_icon-name">Star</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Search"></i><span class="wy_icon-name">Search</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Bell"></i><span class="wy_icon-name">Bell</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Mail"></i><span class="wy_icon-name">Mail</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Camera"></i><span class="wy_icon-name">Camera</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Music"></i><span class="wy_icon-name">Music</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Film"></i><span class="wy_icon-name">Film</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Globe"></i><span class="wy_icon-name">Globe</span></div>
+                <div class="wy_icon-cell"><i data-lucide="MapPin"></i><span class="wy_icon-name">MapPin</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Phone"></i><span class="wy_icon-name">Phone</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Lock"></i><span class="wy_icon-name">Lock</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Settings"></i><span class="wy_icon-name">Settings</span></div>
+                <div class="wy_icon-cell"><i data-lucide="BookOpen"></i><span class="wy_icon-name">BookOpen</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Sun"></i><span class="wy_icon-name">Sun</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Moon"></i><span class="wy_icon-name">Moon</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Cloud"></i><span class="wy_icon-name">Cloud</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Feather"></i><span class="wy_icon-name">Feather</span></div>
+            </div>
+        </section>
+
+        <!-- 操作与开发 -->
+        <section class="wy_section">
+            <div class="wy_section-head">
+                <h2 class="wy_section-title">操作与开发</h2>
+                <p class="wy_section-desc">// actions & dev</p>
+            </div>
+            <div class="wy_icon-grid">
+                <div class="wy_icon-cell"><i data-lucide="Download"></i><span class="wy_icon-name">Download</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Upload"></i><span class="wy_icon-name">Upload</span></div>
+                <div class="wy_icon-cell"><i data-lucide="RefreshCw"></i><span class="wy_icon-name">RefreshCw</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Edit"></i><span class="wy_icon-name">Edit</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Save"></i><span class="wy_icon-name">Save</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Trash2"></i><span class="wy_icon-name">Trash2</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Code"></i><span class="wy_icon-name">Code</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Terminal"></i><span class="wy_icon-name">Terminal</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Bug"></i><span class="wy_icon-name">Bug</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Zap"></i><span class="wy_icon-name">Zap</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Flame"></i><span class="wy_icon-name">Flame</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Leaf"></i><span class="wy_icon-name">Leaf</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Shield"></i><span class="wy_icon-name">Shield</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Rocket"></i><span class="wy_icon-name">Rocket</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Car"></i><span class="wy_icon-name">Car</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Plane"></i><span class="wy_icon-name">Plane</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Wifi"></i><span class="wy_icon-name">Wifi</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Battery"></i><span class="wy_icon-name">Battery</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Check"></i><span class="wy_icon-name">Check</span></div>
+                <div class="wy_icon-cell"><i data-lucide="X"></i><span class="wy_icon-name">X</span></div>
+            </div>
+        </section>
+
+        <!-- 系统与数据 -->
+        <section class="wy_section">
+            <div class="wy_section-head">
+                <h2 class="wy_section-title">系统 & 数据</h2>
+                <p class="wy_section-desc">// hardware & data</p>
+            </div>
+            <div class="wy_icon-grid">
+                <div class="wy_icon-cell"><i data-lucide="Apple"></i><span class="wy_icon-name">Apple</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Database"></i><span class="wy_icon-name">Database</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Server"></i><span class="wy_icon-name">Server</span></div>
+                <div class="wy_icon-cell"><i data-lucide="HardDrive"></i><span class="wy_icon-name">HardDrive</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Cpu"></i><span class="wy_icon-name">Cpu</span></div>
+                <div class="wy_icon-cell"><i data-lucide="MemoryStick"></i><span class="wy_icon-name">MemoryStick</span></div>
+                <div class="wy_icon-cell"><i data-lucide="FileText"></i><span class="wy_icon-name">FileText</span></div>
+                <div class="wy_icon-cell"><i data-lucide="FileJson"></i><span class="wy_icon-name">FileJson</span></div>
+                <div class="wy_icon-cell"><i data-lucide="FileCode2"></i><span class="wy_icon-name">FileCode2</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Palette"></i><span class="wy_icon-name">Palette</span></div>
+                <div class="wy_icon-cell"><i data-lucide="PaintbrushVertical"></i><span class="wy_icon-name">PaintbrushVertical</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Compass"></i><span class="wy_icon-name">Compass</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Wrench"></i><span class="wy_icon-name">Wrench</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Hammer"></i><span class="wy_icon-name">Hammer</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Gauge"></i><span class="wy_icon-name">Gauge</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Activity"></i><span class="wy_icon-name">Activity</span></div>
+                <div class="wy_icon-cell"><i data-lucide="BarChart3"></i><span class="wy_icon-name">BarChart3</span></div>
+                <div class="wy_icon-cell"><i data-lucide="TrendingUp"></i><span class="wy_icon-name">TrendingUp</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Menu"></i><span class="wy_icon-name">Menu</span></div>
+                <div class="wy_icon-cell"><i data-lucide="Plus"></i><span class="wy_icon-name">Plus</span></div>
+            </div>
+        </section>
+
+        <footer class="wy_footer">
+            <span>Lucide v1.61.0 · 2,170 icons · inline SVG</span>
+            <a href="index.html">返回首页</a>
+        </footer>
+    </div>
+
+    <script src="cdn/lucide.min.js"></script>
+    <script>
+        var wy_lucideResult = lucide.createIcons();
+    </script>
+</body>
+
+</html>
