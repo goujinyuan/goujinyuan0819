@@ -2,14 +2,14 @@
 作者: 苟津源
 建立时间: 2026-11-02
 使用模型: Trae (proprietary model from Trae team)
-功能: Tab 选项卡新闻展示页面 —— 参考图视觉 1:1 还原（短蓝线高亮、浅灰表头、行分隔线）
+功能: Tab 选项卡 —— 1:1 复原参考图汽车上市信息（最新上市/即将上市）
 -->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tab 选项卡 - 新闻分类</title>
+    <title>Tab 选项卡 - 汽车上市信息</title>
     <style>
         /* ===== 页面基础 ===== */
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -54,14 +54,14 @@
         .wy-tab-header.wy-tab-active::after {
             content: "";
             position: absolute;
-            left: 25%;       /* 左右各留 25%，即高亮线约占 Tab 宽度 50% */
+            left: 25%;
             right: 25%;
-            bottom: -1px;    /* 紧贴下方分隔线上沿 */
+            bottom: -1px;
             height: 2px;
             background: #4a7cff; /* 参考图蓝色高亮 */
         }
 
-        /* ===== 表格内容区（参考图：浅灰表头 + 行分隔线） ===== */
+        /* ===== 表格内容区 ===== */
         .wy-tab-content { }
         .wy-tab-panel { display: none; }
         .wy-tab-panel.wy-panel-active { display: block; }
@@ -86,15 +86,13 @@
             border-bottom: 1px solid #eee;
             color: #333;
         }
-        /* 最后一行去掉分隔线 */
         .wy-news-table tbody tr:last-child td {
             border-bottom: none;
         }
-        /* 售价/阅读量右对齐（参考图售价列右对齐） */
+        /* 售价右对齐（参考图售价列右对齐） */
         .wy-news-table td.wy-col-right,
         .wy-news-table th.wy-col-right {
             text-align: right;
-            color: #666;
         }
 
         /* ===== 返回首页 ===== */
@@ -115,90 +113,52 @@
 <div class="wy-container">
     <div class="wy-tabs">
 
-        <!-- Tab 导航（4 个） -->
+        <!-- Tab 导航（参考图：2 个 Tab，最新上市为默认） -->
         <div class="wy-tab-nav">
-            <div class="wy-tab-header wy-tab-active">国内新闻</div>
-            <div class="wy-tab-header">省内新闻</div>
-            <div class="wy-tab-header">国际新闻</div>
-            <div class="wy-tab-header">最热新闻</div>
+            <div class="wy-tab-header wy-tab-active">最新上市</div>
+            <div class="wy-tab-header">即将上市</div>
         </div>
 
-        <!-- 4 个内容面板：每个对应一张表格 -->
+        <!-- 内容面板 -->
         <div class="wy-tab-content">
 
-            <!-- 国内新闻（默认激活） -->
+            <!-- 最新上市（默认激活）—— 数据 1:1 复制参考图 -->
             <div class="wy-tab-panel wy-panel-active">
                 <table class="wy-news-table">
                     <thead>
                         <tr>
-                            <th style="width:34%">分类</th>
-                            <th>新闻标题</th>
-                            <th class="wy-col-right">日期</th>
+                            <th style="width:24%">上市时间</th>
+                            <th>品牌/车型</th>
+                            <th class="wy-col-right" style="width:30%">售价（万元）</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>社会</td><td>全国多地迎来入冬后首场降雪</td><td class="wy-col-right">2026-11-02</td></tr>
-                        <tr><td>经济</td><td>新能源汽车产量连续三月创新高</td><td class="wy-col-right">2026-11-01</td></tr>
-                        <tr><td>政策</td><td>国家发改委发布新一轮基建投资计划</td><td class="wy-col-right">2026-10-31</td></tr>
-                        <tr><td>外贸</td><td>第 130 届广交会成交额同比增长 12%</td><td class="wy-col-right">2026-10-30</td></tr>
-                        <tr><td>科技</td><td>国产大飞机 C919 完成首次商业飞行</td><td class="wy-col-right">2026-10-29</td></tr>
+                        <tr><td>12月13日</td><td>沃尔沃S60L</td><td class="wy-col-right">26.99-38.49</td></tr>
+                        <tr><td>12月12日</td><td>牧马人龙腾典藏</td><td class="wy-col-right">47.99-59.99</td></tr>
+                        <tr><td>12月10日</td><td>一汽大众高尔夫7</td><td class="wy-col-right">11.89-18.29</td></tr>
+                        <tr><td>12月6日</td><td>2014款古思特</td><td class="wy-col-right">419.0-666.0</td></tr>
+                        <tr><td>12月5日</td><td>起亚新款K5</td><td class="wy-col-right">15.98-25.18</td></tr>
+                        <tr><td>12月5日</td><td>2014款奥迪赛</td><td class="wy-col-right">22.98-28.68</td></tr>
                     </tbody>
                 </table>
             </div>
 
-            <!-- 省内新闻 -->
+            <!-- 即将上市 -->
             <div class="wy-tab-panel">
                 <table class="wy-news-table">
                     <thead>
                         <tr>
-                            <th style="width:34%">分类</th>
-                            <th>新闻标题</th>
-                            <th class="wy-col-right">日期</th>
+                            <th style="width:24%">上市时间</th>
+                            <th>品牌/车型</th>
+                            <th class="wy-col-right" style="width:30%">预计售价（万元）</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>政务</td><td>省重点项目集中开工仪式在杭州举行</td><td class="wy-col-right">2026-11-02</td></tr>
-                        <tr><td>经济</td><td>浙江数字经济核心产业增速超 15%</td><td class="wy-col-right">2026-11-01</td></tr>
-                        <tr><td>港口</td><td>宁波舟山港集装箱吞吐量突破 3000 万标箱</td><td class="wy-col-right">2026-10-31</td></tr>
-                        <tr><td>民生</td><td>杭州地铁 18 号线正式开通运营</td><td class="wy-col-right">2026-10-30</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- 国际新闻 -->
-            <div class="wy-tab-panel">
-                <table class="wy-news-table">
-                    <thead>
-                        <tr>
-                            <th style="width:34%">分类</th>
-                            <th>新闻标题</th>
-                            <th class="wy-col-right">日期</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>外交</td><td>联合国气候大会达成新减排协议</td><td class="wy-col-right">2026-11-02</td></tr>
-                        <tr><td>金融</td><td>美联储暗示年内或再次降息</td><td class="wy-col-right">2026-11-01</td></tr>
-                        <tr><td>外交</td><td>日韩领导人会晤讨论供应链合作</td><td class="wy-col-right">2026-10-31</td></tr>
-                        <tr><td>科技</td><td>SpaceX 星舰第七次试飞成功回收</td><td class="wy-col-right">2026-10-30</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- 最热新闻 -->
-            <div class="wy-tab-panel">
-                <table class="wy-news-table">
-                    <thead>
-                        <tr>
-                            <th style="width:34%">热度</th>
-                            <th>新闻标题</th>
-                            <th class="wy-col-right">阅读量</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>🔥🔥🔥</td><td>AI 大模型竞赛白热化：国内外厂商密集发布新品</td><td class="wy-col-right">28.6万</td></tr>
-                        <tr><td>🔥🔥</td><td>国足世预赛客场取胜，晋级形势明朗</td><td class="wy-col-right">15.2万</td></tr>
-                        <tr><td>🔥🔥</td><td>iPhone 18 系列首月销量破纪录</td><td class="wy-col-right">12.8万</td></tr>
-                        <tr><td>🔥</td><td>考研报名人数再创新高：438 万</td><td class="wy-col-right">9.4万</td></tr>
+                        <tr><td>12月18日</td><td>全新一代迈腾</td><td class="wy-col-right">18.99-31.99</td></tr>
+                        <tr><td>12月20日</td><td>宝马 3 系长轴距</td><td class="wy-col-right">31.99-39.99</td></tr>
+                        <tr><td>12月22日</td><td>特斯拉 Model Y 改款</td><td class="wy-col-right">26.39-36.39</td></tr>
+                        <tr><td>12月25日</td><td>比亚迪汉 EV 新款</td><td class="wy-col-right">21.98-32.98</td></tr>
+                        <tr><td>12月28日</td><td>丰田凯美瑞混动</td><td class="wy-col-right">17.98-26.98</td></tr>
                     </tbody>
                 </table>
             </div>
