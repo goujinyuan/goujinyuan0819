@@ -1,0 +1,218 @@
+<!--
+作者: 苟津源
+建立时间: 2026-11-02
+使用模型: Trae (proprietary model from Trae team)
+功能: Tab 选项卡新闻展示页面 —— 国内/省内/国际/最热四个分类，点击切换下方新闻列表
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab 选项卡 - 新闻分类</title>
+    <style>
+        /* ===== 页面基础 ===== */
+        * { box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            background: #f5f6f8;
+            color: #333;
+        }
+        .wy-container {
+            max-width: 720px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            overflow: hidden;
+        }
+
+        /* ===== 选项卡头部（参考图样式） ===== */
+        .wy-tabs { }
+        .wy-tab-nav {
+            display: flex;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .wy-tab-header {
+            flex: 1;
+            padding: 16px 0;
+            text-align: center;
+            font-size: 15px;
+            color: #888;
+            cursor: pointer;
+            position: relative;
+            user-select: none;
+            transition: color .2s;
+        }
+        /* 选中态：深色文字 + 底部 2px 高亮线（参考图核心样式） */
+        .wy-tab-header.wy-tab-active {
+            color: #e26d4f;
+            font-weight: bold;
+        }
+        .wy-tab-header.wy-tab-active::after {
+            content: "";
+            position: absolute;
+            left: 20%;
+            right: 20%;
+            bottom: -1px;
+            height: 2px;
+            background: #e26d4f;
+        }
+        .wy-tab-header:hover { color: #e26d4f; }
+
+        /* ===== 内容面板 ===== */
+        .wy-tab-content { padding: 20px 24px; }
+        .wy-tab-panel {
+            display: none; /* 默认隐藏 */
+        }
+        .wy-tab-panel.wy-panel-active {
+            display: block; /* 激活显示 */
+        }
+
+        /* ===== 新闻列表 ===== */
+        .wy-news-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px dashed #eee;
+        }
+        .wy-news-item:last-child { border-bottom: none; }
+        .wy-news-title {
+            font-size: 14px;
+            color: #333;
+            flex: 1;
+        }
+        .wy-news-tag {
+            display: inline-block;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 3px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        .wy-tag-hot { background: #fff0ed; color: #e26d4f; }
+        .wy-tag-new { background: #e8f5e9; color: #4caf50; }
+        .wy-news-date {
+            font-size: 12px;
+            color: #aaa;
+            white-space: nowrap;
+            margin-left: 16px;
+        }
+
+        /* ===== 返回首页 ===== */
+        .wy-back-home {
+            display: block;
+            max-width: 720px;
+            margin: 24px auto 0;
+            text-align: center;
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .wy-back-home:hover { color: #e26d4f; }
+    </style>
+</head>
+<body>
+
+<div class="wy-container">
+    <div class="wy-tabs">
+        <!-- 选项卡头部（4 个 tab） -->
+        <div class="wy-tab-nav">
+            <div class="wy-tab-header wy-tab-active" data-tab="domestic">国内新闻</div>
+            <div class="wy-tab-header" data-tab="province">省内新闻</div>
+            <div class="wy-tab-header" data-tab="international">国际新闻</div>
+            <div class="wy-tab-header" data-tab="hottest">最热新闻</div>
+        </div>
+
+        <!-- 4 个内容面板，每个对应一个新闻列表 -->
+        <div class="wy-tab-content">
+
+            <!-- 国内新闻面板 -->
+            <div class="wy-tab-panel wy-panel-active">
+                <div class="wy-news-item">
+                    <span class="wy-news-title"><span class="wy-news-tag wy-tag-hot">热</span>全国多地迎来入冬后首场降雪</span>
+                    <span class="wy-news-date">2026-11-02</span>
+                </div>
+                <div class="wy-news-item">
+                    <span class="wy-news-title"><span class="wy-news-tag wy-tag-new">新</span>新能源汽车产量连续三月创新高</span>
+                    <span class="wy-news-date">2026-11-01</span>
+                </div>
+                <div class="wy-news-item">
+                    <span class="wy-news-title">国家发改委发布新一轮基建投资计划</span>
+                    <span class="wy-news-date">2026-10-31</span>
+                </div>
+                <div class="wy-news-item">
+                    <span class="wy-news-title">第 130 届广交会成交额同比增长 12%</span>
+                    <span class="wy-news-date">2026-10-30</span>
+                </div>
+            </div>
+
+            <!-- 省内新闻面板 -->
+            <div class="wy-tab-panel">
+                <div class="wy-news-item">
+                    <span class="wy-news-title"><span class="wy-news-tag wy-tag-hot">热</span>省重点项目集中开工仪式在杭州举行</span>
+                    <span class="wy-news-date">2026-11-02</span>
+                </div>
+                <div class="wy-news-item">
+                    <span class="wy-news-title"><span class="wy-news-tag wy-tag-new">新</span>浙江数字经济核心产业增速超 15%</span>
+                    <span class="wy-news-date">2026-11-01</span>
+                </div>
+                <div class="wy-news-item">
+                    <span class="wy-news-title">宁波舟山港集装箱吞吐量突破 3000 万标箱</span>
+                    <span class="wy-news-date">2026-10-31</span>
+                </div>
+            </div>
+
+            <!-- 国际新闻面板 -->
+            <div class="wy-tab-panel">
+                <div class="wy-news-item">
+                    <span class="wy-news-title"><span class="wy-news-tag wy-tag-hot">热</span>联合国气候大会达成新减排协议</span>
+                    <span class="wy-news-date">2026-11-02</span>
+                </div>
+                <div class="wy-news-item">
+                    <span class="wy-news-title">美联储暗示年内或再次降息</span>
+                    <span class="wy-news-date">2026-11-01</span>
+                </div>
+                <div class="wy-news-item">
+                    <span class="wy-news-title">日韩领导人会晤讨论供应链合作</span>
+                    <span class="wy-news-date">2026-10-31</span>
+                </div>
+                <div class="wy-news-item">
+                    <span class="wy-news-title">SpaceX 星舰第七次试飞成功回收</span>
+                    <span class="wy-news-date">2026-10-30</span>
+                </div>
+            </div>
+
+            <!-- 最热新闻面板 -->
+            <div class="wy-tab-panel">
+                <div class="wy-news-item">
+                    <span class="wy-news-title"><span class="wy-news-tag wy-tag-hot">热</span>AI 大模型竞赛白热化：国内外厂商密集发布新品</span>
+                    <span class="wy-news-date">🔥 28.6万阅读</span>
+                </div>
+                <div class="wy-news-item">
+                    <span class="wy-news-title">国足世预赛客场取胜，晋级形势明朗</span>
+                    <span class="wy-news-date">🔥 15.2万阅读</span>
+                </div>
+                <div class="wy-news-item">
+                    <span class="wy-news-title">iPhone 18 系列首月销量破纪录</span>
+                    <span class="wy-news-date">🔥 12.8万阅读</span>
+                </div>
+                <div class="wy-news-item">
+                    <span class="wy-news-title">考研报名人数再创新高：438 万</span>
+                    <span class="wy-news-date">🔥 9.4万阅读</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<a class="wy-back-home" href="./index.html">← 返回首页 / 返回课堂目录</a>
+
+<!-- 外部引用可复用选项卡模块 -->
+<script src="./js/tabs.js"></script>
+</body>
+</html>

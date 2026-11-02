@@ -99,3 +99,43 @@
 - **提示词内容**:
 
 创建 git-push-project skill：初始化仓库、git init、配置 remote origin=https://github.com/goujinyuan/goujinyuan0819.git、首次 commit 63 文件、创建 ED25519 SSH 密钥（但 SSH port 22 被防火墙阻断，改用 HTTPS）、SKILL.md 写入 c:\Code\网页设计\.trae\skills\git-push-project\
+
+---
+
+## 记录 11
+
+- **时间**: 2026-11-02
+- **模型**: Trae (proprietary model from Trae team)
+- **提示词内容**:
+
+修改规则 AGENTS.md，在新建 HTML 文件时要加入注释，尤其是 JS 部分代码函数的主要功能实现。注释内容包括：苟津源、建立时间、使用模型、功能名称及简介。
+
+---
+
+## 记录 12
+
+- **时间**: 2026-11-02
+- **模型**: Trae (proprietary model from Trae team)
+- **提示词内容**:
+
+AGENTS.md 全文翻译为简体中文；新增"文档语言约定"规则条：所有说明、检查条目统一简体中文，文件路径/HTML/CSS/JS 标识符/命令保留英文。后续生成文档、检查清单都遵守此约定。
+
+---
+
+## 记录 13
+
+- **时间**: 2026-11-02
+- **模型**: Trae (proprietary model from Trae team)
+- **提示词内容**:
+
+新建 tab-news.html：Tab 选项卡（国内新闻/省内新闻/国际新闻/最热新闻，国内默认），JS 单独放 js/tabs.js 外部引用，可复用。实现：事件监听 + 清除全部选中状态 + 设置当前选中状态。必须遵循新规则：文件头注释、JSDoc、wy_ 前缀、返回首页链接。
+
+---
+
+## 记录 14
+
+- **时间**: 2026-11-02
+- **模型**: Trae (proprietary model from Trae team)
+- **提示词内容**:
+
+用户上传参考图（汽车上市 Tab：最新上市/即将上市 + 下方表格），要求 tab-news.html 样式照此参考图实现，完成后 commit + push 到 GitHub goujinyuan0819 仓库。
