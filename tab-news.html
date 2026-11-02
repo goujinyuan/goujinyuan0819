@@ -21,7 +21,7 @@
         }
 
         /* ===== 卡片容器（参考图：白底 + 圆角 + 轻微阴影） ===== */
-        .wy-container {
+        .gjy-container {
             max-width: 640px;
             margin: 0 auto;
             background: #ffffff;
@@ -31,11 +31,11 @@
         }
 
         /* ===== Tab 导航区 ===== */
-        .wy-tab-nav {
+        .gjy-tab-nav {
             display: flex;
             border-bottom: 1px solid #e5e5e5; /* 参考图：全宽浅灰分隔线 */
         }
-        .wy-tab-header {
+        .gjy-tab-header {
             flex: 1;
             padding: 14px 0;
             text-align: center;
@@ -47,11 +47,11 @@
             transition: color .15s;
         }
         /* 选中态：深色加粗 + 居中短蓝线（约50%宽、2px高、居中） */
-        .wy-tab-header.wy-tab-active {
+        .gjy-tab-header.gjy-tab-active {
             color: #1a1a1a;
             font-weight: bold;
         }
-        .wy-tab-header.wy-tab-active::after {
+        .gjy-tab-header.gjy-tab-active::after {
             content: "";
             position: absolute;
             left: 25%;
@@ -62,17 +62,17 @@
         }
 
         /* ===== 表格内容区 ===== */
-        .wy-tab-content { }
-        .wy-tab-panel { display: none; }
-        .wy-tab-panel.wy-panel-active { display: block; }
+        .gjy-tab-content { }
+        .gjy-tab-panel { display: none; }
+        .gjy-tab-panel.gjy-panel-active { display: block; }
 
-        .wy-news-table {
+        .gjy-news-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 14px;
         }
         /* 表头：浅灰背景 */
-        .wy-news-table thead th {
+        .gjy-news-table thead th {
             background: #f5f5f5;
             padding: 12px 16px;
             text-align: left;
@@ -81,22 +81,22 @@
             font-size: 13px;
         }
         /* 表格行：每行底部分隔线 */
-        .wy-news-table tbody td {
+        .gjy-news-table tbody td {
             padding: 14px 16px;
             border-bottom: 1px solid #eee;
             color: #333;
         }
-        .wy-news-table tbody tr:last-child td {
+        .gjy-news-table tbody tr:last-child td {
             border-bottom: none;
         }
         /* 售价右对齐（参考图售价列右对齐） */
-        .wy-news-table td.wy-col-right,
-        .wy-news-table th.wy-col-right {
+        .gjy-news-table td.gjy-col-right,
+        .gjy-news-table th.gjy-col-right {
             text-align: right;
         }
 
         /* ===== 返回首页 ===== */
-        .wy-back-home {
+        .gjy-back-home {
             display: block;
             max-width: 640px;
             margin: 24px auto 0;
@@ -105,60 +105,60 @@
             text-decoration: none;
             font-size: 14px;
         }
-        .wy-back-home:hover { color: #4a7cff; }
+        .gjy-back-home:hover { color: #4a7cff; }
     </style>
 </head>
 <body>
 
-<div class="wy-container">
-    <div class="wy-tabs">
+<div class="gjy-container">
+    <div class="gjy-tabs">
 
         <!-- Tab 导航（参考图：2 个 Tab，最新上市为默认） -->
-        <div class="wy-tab-nav">
-            <div class="wy-tab-header wy-tab-active">最新上市</div>
-            <div class="wy-tab-header">即将上市</div>
+        <div class="gjy-tab-nav">
+            <div class="gjy-tab-header gjy-tab-active">最新上市</div>
+            <div class="gjy-tab-header">即将上市</div>
         </div>
 
         <!-- 内容面板 -->
-        <div class="wy-tab-content">
+        <div class="gjy-tab-content">
 
             <!-- 最新上市（默认激活）—— 数据 1:1 复制参考图 -->
-            <div class="wy-tab-panel wy-panel-active">
-                <table class="wy-news-table">
+            <div class="gjy-tab-panel gjy-panel-active">
+                <table class="gjy-news-table">
                     <thead>
                         <tr>
                             <th style="width:24%">上市时间</th>
                             <th>品牌/车型</th>
-                            <th class="wy-col-right" style="width:30%">售价（万元）</th>
+                            <th class="gjy-col-right" style="width:30%">售价（万元）</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>12月13日</td><td>沃尔沃S60L</td><td class="wy-col-right">26.99-38.49</td></tr>
-                        <tr><td>12月12日</td><td>牧马人龙腾典藏</td><td class="wy-col-right">47.99-59.99</td></tr>
-                        <tr><td>12月10日</td><td>一汽大众高尔夫7</td><td class="wy-col-right">11.89-18.29</td></tr>
-                        <tr><td>12月6日</td><td>2014款古思特</td><td class="wy-col-right">419.0-666.0</td></tr>
-                        <tr><td>12月5日</td><td>起亚新款K5</td><td class="wy-col-right">15.98-25.18</td></tr>
-                        <tr><td>12月5日</td><td>2014款奥迪赛</td><td class="wy-col-right">22.98-28.68</td></tr>
+                        <tr><td>12月13日</td><td>沃尔沃S60L</td><td class="gjy-col-right">26.99-38.49</td></tr>
+                        <tr><td>12月12日</td><td>牧马人龙腾典藏</td><td class="gjy-col-right">47.99-59.99</td></tr>
+                        <tr><td>12月10日</td><td>一汽大众高尔夫7</td><td class="gjy-col-right">11.89-18.29</td></tr>
+                        <tr><td>12月6日</td><td>2014款古思特</td><td class="gjy-col-right">419.0-666.0</td></tr>
+                        <tr><td>12月5日</td><td>起亚新款K5</td><td class="gjy-col-right">15.98-25.18</td></tr>
+                        <tr><td>12月5日</td><td>2014款奥迪赛</td><td class="gjy-col-right">22.98-28.68</td></tr>
                     </tbody>
                 </table>
             </div>
 
             <!-- 即将上市 -->
-            <div class="wy-tab-panel">
-                <table class="wy-news-table">
+            <div class="gjy-tab-panel">
+                <table class="gjy-news-table">
                     <thead>
                         <tr>
                             <th style="width:24%">上市时间</th>
                             <th>品牌/车型</th>
-                            <th class="wy-col-right" style="width:30%">预计售价（万元）</th>
+                            <th class="gjy-col-right" style="width:30%">预计售价（万元）</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>12月18日</td><td>全新一代迈腾</td><td class="wy-col-right">18.99-31.99</td></tr>
-                        <tr><td>12月20日</td><td>宝马 3 系长轴距</td><td class="wy-col-right">31.99-39.99</td></tr>
-                        <tr><td>12月22日</td><td>特斯拉 Model Y 改款</td><td class="wy-col-right">26.39-36.39</td></tr>
-                        <tr><td>12月25日</td><td>比亚迪汉 EV 新款</td><td class="wy-col-right">21.98-32.98</td></tr>
-                        <tr><td>12月28日</td><td>丰田凯美瑞混动</td><td class="wy-col-right">17.98-26.98</td></tr>
+                        <tr><td>12月18日</td><td>全新一代迈腾</td><td class="gjy-col-right">18.99-31.99</td></tr>
+                        <tr><td>12月20日</td><td>宝马 3 系长轴距</td><td class="gjy-col-right">31.99-39.99</td></tr>
+                        <tr><td>12月22日</td><td>特斯拉 Model Y 改款</td><td class="gjy-col-right">26.39-36.39</td></tr>
+                        <tr><td>12月25日</td><td>比亚迪汉 EV 新款</td><td class="gjy-col-right">21.98-32.98</td></tr>
+                        <tr><td>12月28日</td><td>丰田凯美瑞混动</td><td class="gjy-col-right">17.98-26.98</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -167,7 +167,7 @@
     </div>
 </div>
 
-<a class="wy-back-home" href="./index.html">← 返回首页 / 返回课堂目录</a>
+<a class="gjy-back-home" href="./index.html">← 返回首页 / 返回课堂目录</a>
 
 <!-- 外部引用可复用选项卡模块 -->
 <script src="./js/tabs.js"></script>

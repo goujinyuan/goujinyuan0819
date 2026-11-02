@@ -17,3 +17,7 @@ npm-debug.log*
 # Env / secrets
 .env
 .env.local
+
+# Trae temp
+.trae-html-share-packages/
+debug.log

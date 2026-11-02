@@ -11,7 +11,7 @@
  * @param {NodeList} panels - 所有内容面板的集合
  * @param {number} activeIndex - 要激活的索引
  */
-function wy_switchTab(headers, panels, activeIndex) {
+function gjy_switchTab(headers, panels, activeIndex) {
     // 第一步：清除所有选项卡的选中状态
     for (var i = 0; i < headers.length; i++) {
         headers[i].classList.remove("wy-tab-active");
@@ -31,7 +31,7 @@ function wy_switchTab(headers, panels, activeIndex) {
  * @param {string} containerSelector - 选项卡容器的 CSS 选择器（默认 ".wy-tabs"）
  * @param {number} defaultIndex - 默认激活的选项卡索引（默认 0）
  */
-function wy_initTabs(containerSelector, defaultIndex) {
+function gjy_initTabs(containerSelector, defaultIndex) {
     if (!containerSelector) containerSelector = ".wy-tabs";
     if (!defaultIndex && defaultIndex !== 0) defaultIndex = 0;
 
@@ -50,19 +50,19 @@ function wy_initTabs(containerSelector, defaultIndex) {
             (function (idx) {
                 headers[idx].addEventListener("click", function () {
                     // 核心逻辑：清除所有选中状态，再激活当前元素
-                    wy_switchTab(headers, panels, idx);
+                    gjy_switchTab(headers, panels, idx);
                 });
             })(k);
         }
 
         // 设置初始激活项
-        wy_switchTab(headers, panels, defaultIndex);
+        gjy_switchTab(headers, panels, defaultIndex);
     }
 }
 
 // 暴露到 window，方便外部调用调试
-window.wy_initTabs = wy_initTabs;
-window.wy_switchTab = wy_switchTab;
+window.gjy_initTabs = gjy_initTabs;
+window.gjy_switchTab = gjy_switchTab;
 
 // 自动初始化：script 放在 body 末尾时 DOM 已就绪，直接调用
-wy_initTabs(".wy-tabs", 0);
+gjy_initTabs(".wy-tabs", 0);
