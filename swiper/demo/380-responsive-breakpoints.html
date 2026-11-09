@@ -77,6 +77,11 @@
         el: ".swiper-pagination",
         clickable: true,
       },
+      // 在 380 的响应式断点基础上加上 keyboard：方向键切换，仅在轮播进入视口时响应
+      keyboard: {
+        enabled: true,
+        onlyInViewport: true,
+      },
       breakpoints: {
         640: {
           slidesPerView: 2,

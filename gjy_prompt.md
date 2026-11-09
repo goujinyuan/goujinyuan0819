@@ -239,3 +239,123 @@ tab-news.html 1:1 复原参考图视觉：Tab 短蓝色高亮线（居中、约5
 - **提示词内容**:
 
 push（把展品图替换与文案改动提交并推送到 GitHub）
+
+---
+
+## 记录 25
+
+- **时间**: 2026-11-09 13:27:41
+- **模型**: Trae (proprietary model from Trae team)
+- **提示词内容**:
+
+我有prompt.md的文件入口吗（确认站点是否提供 gjy_prompt.md 的访问入口，并在首页补上链接）
+
+---
+
+## 记录 26
+
+- **时间**: 2026-11-09 13:37:01
+- **模型**: Trae (proprietary model from Trae team)
+- **提示词内容**:
+
+我希望在这个底部增加一个promp.md的访问入口（在首页 footer 增加 gjy_prompt.md 链接）
+
+---
+
+## 记录 27
+
+- **时间**: 2026-11-09 13:40:05
+- **模型**: Trae (proprietary model from Trae team)
+- **提示词内容**:
+
+撤销刚才的修改（把 index.html 恢复到上一提交状态，移除本次添加的提示词记录链接与 .footer-link 样式）
+
+---
+
+## 记录 28
+
+- **时间**: 2026-11-09 13:47:55
+- **模型**: Trae (proprietary model from Trae team)
+- **提示词内容**:
+
+挑一个课堂上没讲过的 Swiper 能力加上去:keyboard 键盘控制/mousewheel 滚轮/zoom 双击缩放/parallax 视差，任选其一，AI 可用。重新检查我的任务三（复核第六件展品与 keyboard 超纲能力是否满足评分点，并排查键盘是否真实生效）
+
+---
+
+## 记录 29
+
+- **时间**: 2026-11-09 13:57:29
+- **模型**: Trae (proprietary model from Trae team)
+- **提示词内容**:
+
+你运用了哪一个demo与keyboard结合（询问 keyboard 能力绑定在哪个演示实例上）
+
+---
+
+## 记录 30
+
+- **时间**: 2026-11-09 14:01:58
+- **模型**: Trae (proprietary model from Trae team)
+- **提示词内容**:
+
+我说的demo是我swiper下面的demo下面的images里面的html文件（确认真实参考的是 swiper/demo 目录下的哪个官方示例文件）
+
+---
+
+## 记录 31
+
+- **时间**: 2026-11-09 14:16:21
+- **模型**: Trae (proprietary model from Trae team)
+- **提示词内容**:
+
+① 无缝循环 ② 3.2 秒自动翻页且手动操作后不停止 ③ 圆点分页器可点击 ④ 初始效果为 cube.帮我把任务一按照这个修改（按四项要求核对演示四配置并逐项验证）
+
+---
+
+## 记录 32
+
+- **时间**: 2026-11-09 14:19:56
+- **模型**: Trae (proprietary model from Trae team)
+- **提示词内容**:
+
+帮我在这个条件的基础上优化一下这个效果 然后再任务一的下面进行提示词和效果对比（保持四项条件不变，优化 cube 立体视觉，并在演示四下方补第 1 轮 / 第 2 轮提示词与效果对比）
+
+---
+
+## 记录 33
+
+- **时间**: 2026-11-09 14:27:48
+- **模型**: Trae (proprietary model from Trae team)
+- **提示词内容**:
+
+我需要的是像这个样的 效果对比以及提示词对比 不用在别的地方弄 直接修改任务一的样式就行（参照参考图重做对比区：左右两栏、栏内小轮播预览 + ✗/✓ 效果清单 + 提示词引用 + 深色代码块，只改任务一这一处）
+
+---
+
+## 记录 34
+
+- **时间**: 2026-11-09 14:31:39
+- **模型**: Trae (proprietary model from Trae team)
+- **提示词内容**:
+
+现在我的效果对比是一样的 你现在需要把第一轮提示词的小果修改成第一次的拖动的样（左栏第 1 轮改为默认 slide 平推样式，只有拖动效果，与右栏 cube 形成差异）
+
+---
+
+## 记录 35
+
+- **时间**: 2026-11-09 14:36:00
+- **模型**: Trae (proprietary model from Trae team)
+- **提示词内容**:
+
+帮我把demo里面的380与keyboard结合（在 swiper/demo/380-responsive-breakpoints.html 的初始化参数中加上 keyboard 键盘控制，保留原响应式断点）
+
+---
+
+## 记录 36
+
+- **时间**: 2026-11-09 14:45:43
+- **模型**: Trae (proprietary model from Trae team)
+- **提示词内容**:
+
+挑一个课堂上没讲过的 Swiper 能力加上去:keyboard 键盘控制/mousewheel 滚轮/zoom 双击缩放/parallax 视差，任选其一，AI 可用。我的这个“课上没讲过的”意思是我之前的任务里面没有用到的（改用 parallax 视差作为任务三的能力，keyboard 保留为任务 4 加分项）

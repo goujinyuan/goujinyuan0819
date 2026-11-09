@@ -48,8 +48,8 @@
   .wy-demo{margin:18px 0 6px}
   .wy-demo .wy-demo-tag{display:inline-block;font-size:12.5px;color:#0f2b5b;background:#e8f0ff;border:1px solid #c7d8f8;border-radius:999px;padding:4px 14px;margin-bottom:12px}
   .wy-swiper{width:100%;max-width:760px;margin:0 auto;border-radius:16px;overflow:visible!important}
-  .wy-swiper .swiper{border-radius:16px;box-shadow:0 10px 26px rgba(15,43,91,.18)}
-  .wy-swiper .swiper-slide{position:relative;height:290px}
+  .wy-swiper .swiper{border-radius:16px;box-shadow:0 22px 44px rgba(15,43,91,.26)}
+  .wy-swiper .swiper-slide{position:relative;height:290px;border-radius:14px;overflow:hidden}
   .wy-swiper .swiper-slide img{width:100%;height:100%;object-fit:cover;display:block}
   .wy-swiper .wy-cap{
     position:absolute;left:0;right:0;bottom:0;padding:34px 20px 14px;color:#fff;
@@ -82,6 +82,38 @@
   .gjy-note b{color:#1d4ed8}
   .gjy-note a{color:#1d5bbf;font-weight:bold}
   .gjy-hint{font-size:12.5px;color:#64748b;margin-top:8px}
+
+  /* 任务一：提示词工程 · 第 1 轮 vs 第 2 轮 */
+  .gjy_cmp{margin-top:16px;padding:20px 22px;background:#fff;border:1px solid #e5e7eb;border-radius:14px}
+  .gjy_cmp h3{font-size:17px;color:#111827;letter-spacing:.3px}
+  .gjy_cmp_sub{font-size:13px;color:#4b5563;line-height:2;margin:8px 0 16px}
+  .gjy_cmp_grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .gjy_cmp_card{border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;background:#fcfcfd}
+  .gjy_cmp_head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 12px;background:#f3f4f6;border-bottom:1px solid #e5e7eb}
+  .gjy_cmp_head b{font-size:12.5px;color:#374151}
+  .gjy_cmp_tag{font-size:11.5px;font-weight:bold;border-radius:999px;padding:2px 9px;white-space:nowrap}
+  .gjy_cmp_tag.is_bad{color:#b91c1c;background:#fee2e2}
+  .gjy_cmp_tag.is_good{color:#047857;background:#d1fae5}
+  .gjy_cmp_shot{padding:10px 10px 0}
+  .gjy_cmp_shot .swiper{height:190px;border-radius:4px;overflow:hidden}
+  .gjy_cmp_card.is_new .swiper{height:190px;border-radius:10px;overflow:hidden;box-shadow:0 18px 34px rgba(15,43,91,.28)}
+  .gjy_cmp_shot .swiper-slide img{width:100%;height:100%;object-fit:cover;display:block}
+  .gjy_cmp_shot .swiper-pagination{bottom:4px}
+  .gjy_cmp_shot .swiper-pagination-bullet{background:#fff;opacity:.65;width:6px;height:6px}
+  .gjy_cmp_shot .swiper-pagination-bullet-active{opacity:1;width:14px;border-radius:99px}
+  .gjy_cmp_body{padding:10px 12px 14px}
+  .gjy_cmp_label{font-size:11.5px;font-weight:bold;color:#6b7280;letter-spacing:1px;margin:6px 0 4px}
+  .gjy_cmp_list{margin:0 0 6px;padding-left:0;list-style:none;font-size:12.5px;line-height:1.95}
+  .gjy_cmp_list li{position:relative;padding-left:16px;color:#374151}
+  .gjy_cmp_list.is_bad li::before{content:"✗";position:absolute;left:0;color:#dc2626;font-weight:bold}
+  .gjy_cmp_list.is_good li::before{content:"✓";position:absolute;left:0;color:#059669;font-weight:bold}
+  .gjy_cmp_prompt{margin:0 0 6px;padding:8px 10px;background:#f8fafc;border-left:3px solid #c7d2fe;border-radius:0 6px 6px 0;font-size:12.5px;line-height:1.9;color:#334155}
+  .gjy_cmp_code{margin:0;padding:10px 12px;background:#0b1220;border-radius:8px;overflow-x:auto;font-family:Consolas,Monaco,monospace;font-size:11.5px;line-height:1.75;color:#cbd5e1;white-space:pre-wrap;word-break:break-word}
+  .gjy_cmp_code code{font-family:inherit;color:inherit}
+  .gjy_cmp_code .c{color:#7c8aa5}
+  .gjy_cmp_code .k{color:#7dd3fc}
+  .gjy_cmp_code .s{color:#86efac}
+  @media (max-width:680px){.gjy_cmp_grid{grid-template-columns:1fr}}
 
   .wy-back{text-align:center;margin-top:28px}
   .wy-back a{display:inline-block;text-decoration:none;color:#0f2b5b;font-size:14.5px;font-weight:bold;background:#fff;border:1px solid #dbe4ff;border-radius:999px;padding:10px 26px;transition:transform .2s,box-shadow .2s}
@@ -228,24 +260,106 @@
       <div class="wy-swiper">
         <div class="swiper" id="wySw4">
           <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="swiper-imgs/tiangong_1.jpg" alt="天宫空间站"><div class="wy-cap"><h3>天宫空间站</h3><p>试试上面的效果按钮</p></div></div>
-            <div class="swiper-slide"><img src="swiper-imgs/fuxing_1.jpg" alt="复兴号动车组"><div class="wy-cap"><h3>复兴号动车组</h3><p>同一组照片，六种讲述方式</p></div></div>
-            <div class="swiper-slide"><img src="swiper-imgs/c919_1.jpg" alt="C919大飞机"><div class="wy-cap"><h3>C919 大飞机</h3><p>企业官网爱用 fade</p></div></div>
-            <div class="swiper-slide"><img src="swiper-imgs/fendouzhe_1.jpg" alt="奋斗者号"><div class="wy-cap"><h3>奋斗者号</h3><p>游戏网站爱用 cube</p></div></div>
-            <div class="swiper-slide"><img src="swiper-imgs/fast_1.jpg" alt="中国天眼"><div class="wy-cap"><h3>中国天眼 FAST</h3><p>相册页面爱用 coverflow</p></div></div>
-            <div class="swiper-slide"><img src="swiper-imgs/aidamodu_1.jpg" alt="爱达·魔都号"><div class="wy-cap"><h3>爱达·魔都号</h3><p>第六件展品 · 横版 16:9 实景图</p></div></div>
+            <div class="swiper-slide"><img src="swiper-imgs/tiangong_1.jpg" alt="天宫空间站"><div class="wy-cap" data-swiper-parallax="-220"><h3 data-swiper-parallax="-320">天宫空间站</h3><p data-swiper-parallax="-180">拖动时标题比图片跑得慢</p></div></div>
+            <div class="swiper-slide"><img src="swiper-imgs/fuxing_1.jpg" alt="复兴号动车组"><div class="wy-cap" data-swiper-parallax="-220"><h3 data-swiper-parallax="-320">复兴号动车组</h3><p data-swiper-parallax="-180">同一组照片，六种讲述方式</p></div></div>
+            <div class="swiper-slide"><img src="swiper-imgs/c919_1.jpg" alt="C919大飞机"><div class="wy-cap" data-swiper-parallax="-220"><h3 data-swiper-parallax="-320">C919 大飞机</h3><p data-swiper-parallax="-180">企业官网爱用 fade</p></div></div>
+            <div class="swiper-slide"><img src="swiper-imgs/fendouzhe_1.jpg" alt="奋斗者号"><div class="wy-cap" data-swiper-parallax="-220"><h3 data-swiper-parallax="-320">奋斗者号</h3><p data-swiper-parallax="-180">游戏网站爱用 cube</p></div></div>
+            <div class="swiper-slide"><img src="swiper-imgs/fast_1.jpg" alt="中国天眼"><div class="wy-cap" data-swiper-parallax="-220"><h3 data-swiper-parallax="-320">中国天眼 FAST</h3><p data-swiper-parallax="-180">相册页面爱用 coverflow</p></div></div>
+            <div class="swiper-slide"><img src="swiper-imgs/aidamodu_1.jpg" alt="爱达·魔都号"><div class="wy-cap" data-swiper-parallax="-220"><h3 data-swiper-parallax="-320">爱达·魔都号</h3><p data-swiper-parallax="-180">第六件展品 · 横版 16:9 实景图</p></div></div>
           </div>
           <div class="swiper-pagination" id="wyPag4"></div>
         </div>
       </div>
-      <p class="gjy-hint">提示：点一下轮播区，再按键盘 ← / → 可以左右切换（课堂没讲过的 keyboard 能力）。</p>
+      <p class="gjy-hint">提示：切换时图片与标题会以不同速度移动（parallax 视差，前面几个任务都没用过）；点一下轮播区，再按键盘 ← / → 也能切换。</p>
+    </div>
+
+    <div class="gjy_cmp">
+      <h3>提示词工程：第 1 轮 vs 第 2 轮</h3>
+      <p class="gjy_cmp_sub">同一个任务（无缝循环 + 3.2 秒自动播放 + 圆点分页 + 初始 cube）：第 1 轮只得到最基础的平推轮播，能拖能翻但完全没有 cube；第 2 轮把四项条件补齐并加视觉参数，才变成有厚度的立方体。下面两个小轮播就是两轮代码的真实效果，都能拖动、都会自动翻页，左右对照着看。</p>
+      <div class="gjy_cmp_grid">
+        <div class="gjy_cmp_card">
+          <div class="gjy_cmp_head"><b>第 1 轮 · 只提功能</b><span class="gjy_cmp_tag is_bad">✗ 视觉不达标</span></div>
+          <div class="gjy_cmp_shot">
+            <div class="swiper" id="gjyCmpA">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="swiper-imgs/tiangong_1.jpg" alt="天宫空间站"></div>
+                <div class="swiper-slide"><img src="swiper-imgs/fuxing_1.jpg" alt="复兴号动车组"></div>
+                <div class="swiper-slide"><img src="swiper-imgs/c919_1.jpg" alt="C919大飞机"></div>
+                <div class="swiper-slide"><img src="swiper-imgs/fast_1.jpg" alt="中国天眼"></div>
+              </div>
+              <div class="swiper-pagination" id="gjyCmpPagA"></div>
+            </div>
+          </div>
+          <div class="gjy_cmp_body">
+            <p class="gjy_cmp_label">效果</p>
+            <ul class="gjy_cmp_list is_bad">
+              <li>只生成了最基础的平推轮播：能拖动、能自动翻、圆点能点</li>
+              <li>④「初始效果为 cube」没做到，effect 用了默认的 slide，没有任何 3D</li>
+              <li>没有相邻面投影与明暗，画面是平的，像一张贴纸</li>
+              <li>slide 直角、容器阴影偏平，缺少纵深感</li>
+            </ul>
+            <p class="gjy_cmp_label">提示词</p>
+            <blockquote class="gjy_cmp_prompt">初始化 #wySw4：① 无缝循环 ② 3.2 秒自动翻页且手动操作后不停止 ③ 圆点分页器可点击 ④ 初始效果为 cube</blockquote>
+            <p class="gjy_cmp_label">AI 给出的关键代码</p>
+            <pre class="gjy_cmp_code"><code>var swiper = new Swiper("#wySw4", {
+  loop: true,                       <span class="c">// ① 无缝循环</span>
+  autoplay: {
+    delay: 3200,                    <span class="c">// ② 3.2 秒</span>
+    disableOnInteraction: false,    <span class="c">// ② 手动后不停</span>
+  },
+  pagination: { el: "#wyPag4", clickable: true },  <span class="c">// ③</span>
+  <span class="c">// ④ 漏了 effect: "cube"，默认走 slide 平推</span>
+});</code></pre>
+          </div>
+        </div>
+
+        <div class="gjy_cmp_card is_new">
+          <div class="gjy_cmp_head"><b>第 2 轮 · 同条件补视觉</b><span class="gjy_cmp_tag is_good">✓ 全部达标</span></div>
+          <div class="gjy_cmp_shot">
+            <div class="swiper" id="gjyCmpB">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="swiper-imgs/tiangong_1.jpg" alt="天宫空间站"></div>
+                <div class="swiper-slide"><img src="swiper-imgs/fuxing_1.jpg" alt="复兴号动车组"></div>
+                <div class="swiper-slide"><img src="swiper-imgs/c919_1.jpg" alt="C919大飞机"></div>
+                <div class="swiper-slide"><img src="swiper-imgs/fast_1.jpg" alt="中国天眼"></div>
+              </div>
+              <div class="swiper-pagination" id="gjyCmpPagB"></div>
+            </div>
+          </div>
+          <div class="gjy_cmp_body">
+            <p class="gjy_cmp_label">效果</p>
+            <ul class="gjy_cmp_list is_good">
+              <li>迟到补上 effect: "cube"，④ 从平推变成真正的立方体翻转</li>
+              <li>cubeEffect 打开 shadow / slideShadows，相邻面出现投影与明暗</li>
+              <li>shadowOffset 20、shadowScale 0.94，投影位置和大小更像实体立方体</li>
+              <li>loop / 3200ms / 圆点 / cube 四项条件一条没动，slide 改圆角、投影加深</li>
+            </ul>
+            <p class="gjy_cmp_label">提示词</p>
+            <blockquote class="gjy_cmp_prompt">四项要求保持不变，只优化 cube 的立体表现：加立方体投影和每个面的明暗，阴影偏移 20、阴影缩放 0.94；slide 改圆角，容器投影加深</blockquote>
+            <p class="gjy_cmp_label">AI 追加的代码</p>
+            <pre class="gjy_cmp_code"><code>var swiper = new Swiper("#wySw4", {
+  loop: true,                       <span class="c">// ① 不变</span>
+  autoplay: { delay: 3200, disableOnInteraction: false },  <span class="c">// ② 不变</span>
+  pagination: { el: "#wyPag4", clickable: true },          <span class="c">// ③ 不变</span>
+  effect: <span class="s">"cube"</span>,                   <span class="c">// ④ 不变</span>
+  cubeEffect: {                     <span class="c">// 本轮新增</span>
+    shadow: true,                   <span class="c">// 面与面之间的投影</span>
+    slideShadows: true,             <span class="c">// 每个面自身明暗</span>
+    shadowOffset: 20,
+    shadowScale: 0.94,
+  },
+});</code></pre>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="gjy-note">
       <h3>技术说明（答辩备用）</h3>
       <p><b>creative 的 prev / next 各控制什么：</b><b>prev</b> 描述“上一张”（当前张左侧那张）停在哪里、怎么动——本页设为左移 118%、缩小到 0.82、绕 Z 轴倾斜 -16°；<b>next</b> 描述“下一张”（当前张右侧那张）的待命与进场——本页设为右移 118%、放大到 1.08、倾斜 +16°，切换时从右侧飞入。两张都用 <code>shadow</code> 模拟电影灯箱的投影，整体像电影选片墙。</p>
       <p><b>transform 里的百分号相对谁：</b>相对 <b>slide 自身的宽度</b>（translate 的 y 值则相对高度），所以换屏幕尺寸也不会跑位；而 <code>rotate</code> 的三个数字是 <b>rotateX / rotateY / rotateZ 的角度（单位“度”）</b>，不是百分比——把 16 改成 20，卡片就倾斜 20°。</p>
-      <p><b>新加的 keyboard 能力：</b><code>keyboard.enabled: true</code> 打开键盘监听（← →、PageUp/PageDown 切换）；<code>onlyInViewport: true</code> 让轮播只有进入视口时才响应，避免整页滚动时误触左右键。</p>
+      <p><b>新加的 parallax 能力：</b>初始化参数加 <code>parallax: true</code>，再在 slide 内部元素上写 <code>data-swiper-parallax="-320"</code>（标题）/ <code>-180</code>（说明）/<code>-220</code>（整块说明文字），数字是相对位移量（带负号表示与滑动方向相反）。前面任务一只有 cube、任务二只有 creative，都没用过视差，所以它算“没用到过”的能力。</p>
+      <p><b>顺手加的 keyboard：</b><code>keyboard.enabled: true</code> 打开键盘监听（← →、PageUp/PageDown 切换）；<code>onlyInViewport: true</code> 让轮播只有进入视口时才响应，避免整页滚动时误触左右键。</p>
       <p><b>第六件展品：</b>爱达·魔都号（首艘国产大型邮轮，2024 年 1 月首航），横版 16:9 展品图（1920×1080）存放在 <code>swiper-imgs/aidamodu_1.jpg</code>，slide 结构与其它展品一致（图片 + 标题 + 说明）。</p>
       <p><b>提示词记录：</b>任务一 / 二 / 三的提示词与 AI 往返记录见 <a href="gjy_prompt.md">gjy_prompt.md</a>。</p>
     </div>
@@ -316,23 +430,36 @@ var wtSw1 = new Swiper("#wySw1", {});
   };
 
   /**
+   * cube 效果的视觉参数：阴影让立方体相邻面之间出现投影和明暗，避免"薄纸板"感
+   * shadow 控制面与面之间的投影，slideShadows 控制每个面自身的明暗，shadowOffset/shadowScale 调整阴影位置与缩放
+   */
+  var gjyCubeEffect = {
+    shadow: true,
+    slideShadows: true,
+    shadowOffset: 20,
+    shadowScale: 0.94,
+  };
+
+  /**
    * 函数功能：按指定效果创建（或重建）演示四的轮播实例
    * @param {string} gjyFx - 效果名：slide / fade / cube / coverflow / flip / cards / creative
    * @returns {object} 新建的 Swiper 实例
    */
   function gjyMountSw4(gjyFx) {
     var gjyOptions = {
-      loop: true,
+      loop: true, // ① 无缝循环：最后一张继续往后翻会回到第一张
       speed: 800,
-      effect: gjyFx,
+      effect: gjyFx, // ④ 初始效果为 cube，由下方 gjyMountSw4("cube") 传入
       autoplay: {
-        delay: 3200,
-        disableOnInteraction: false,
+        delay: 3200, // ② 每 3.2 秒自动翻页
+        disableOnInteraction: false, // ② 手动拖动/点圆点之后，自动播放不停止
       },
       pagination: {
         el: "#wyPag4",
-        clickable: true,
+        clickable: true, // ③ 圆点分页器可点击跳转
       },
+      // 课堂任务三：挑一个前面任务没用到过的能力 —— parallax 视差，标题/副标题与图片以不同速度移动
+      parallax: true,
       // 课堂没讲过的 keyboard 能力：方向键切换，仅在轮播进入视口时响应
       keyboard: {
         enabled: true,
@@ -341,11 +468,43 @@ var wtSw1 = new Swiper("#wySw1", {});
     };
     // 只有 creative 效果才需要 creativeEffect 参数
     if (gjyFx === "creative") gjyOptions.creativeEffect = gjyCreativeEffect;
+    // cube 效果补充阴影参数，让立体感更真实
+    if (gjyFx === "cube") gjyOptions.cubeEffect = gjyCubeEffect;
     return new Swiper("#wySw4", gjyOptions);
   }
 
   // 课堂任务一要求：初始效果为 cube
   var gjySw4 = gjyMountSw4("cube");
+
+  // 任务一对比区：左侧"第 1 轮"只生成了最基础的平推轮播（不写 effect，默认 slide）
+  var gjyCmpA = new Swiper("#gjyCmpA", {
+    loop: true,
+    speed: 800,
+    autoplay: {
+      delay: 3200,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: "#gjyCmpPagA",
+      clickable: true,
+    },
+  });
+
+  // 任务一对比区：右侧"第 2 轮"四项条件不变，只补 cubeEffect 的阴影参数
+  var gjyCmpB = new Swiper("#gjyCmpB", {
+    loop: true,
+    speed: 800,
+    effect: "cube",
+    autoplay: {
+      delay: 3200,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: "#gjyCmpPagB",
+      clickable: true,
+    },
+    cubeEffect: gjyCubeEffect,
+  });
 
   // ── 任务 4 进阶：点击按钮切换效果（必须先销毁旧实例再重建） ──
   document.querySelectorAll('.wy-fx button').forEach(function (gjyBtn) {
